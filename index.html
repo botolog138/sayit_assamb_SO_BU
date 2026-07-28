@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#060607" />
+<meta name="theme-color" content="#030706" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2728%27 fill=%27%230b2419%27 stroke=%27%23d4af37%27 stroke-width=%273%27/%3E%3Cpath d=%27M18 45V19l14 20V19h6v26L24 28v17zm22 0V19h6v26z%27 fill=%27%23d4af37%27/%3E%3C/svg%3E">
 <title>Ассамблея СО/БУ — проБУди СОзнание · Иркутск 2026</title>
 <meta name="description" content="Ассамблея подкомитетов «Больницы и Учреждения» и «Связь с Общественностью». 14–15 ноября 2026, Иркутск, Учебный центр профсоюзов." />
 
@@ -615,6 +616,61 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spac
 body.no-3d .hero__canvas { display: none; }
 body.no-3d .hero__bg-fallback { display: block; }
 body.no-3d .hero__static-logo { display: block; }
+
+/* 2026 refinement: living cosmos, gold/green emblem and accessible cards */
+body{min-height:100%;background:radial-gradient(circle at 50% 10%,rgba(14,57,45,.34),transparent 34%),linear-gradient(180deg,#020403 0%,#050807 42%,#020303 100%)}
+.cosmos-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:.82}body>section,body>.marquee,body>footer{position:relative;z-index:1}
+.hero__static-logo{width:clamp(270px,58vw,560px);height:clamp(270px,58vw,560px);opacity:.64;filter:drop-shadow(0 0 22px rgba(212,175,55,.24));animation:staticFloat 8s ease-in-out infinite}.hero__static-logo img{width:100%;height:100%;object-fit:contain}@keyframes staticFloat{0%,100%{transform:translate(-50%,-50%) scale(.98)}50%{transform:translate(-50%,-52%) scale(1.02)}}
+.hero__text-backdrop{background:radial-gradient(ellipse at center,rgba(2,5,4,.64) 0%,rgba(2,5,4,.30) 48%,transparent 76%)}.hero__glow{background:radial-gradient(circle,rgba(212,175,55,.11) 0%,rgba(13,85,61,.09) 28%,transparent 58%)}.hero__scanlines{opacity:.22}
+.org__card{width:100%;min-height:224px;text-align:left;color:var(--fg-0);background:linear-gradient(145deg,rgba(13,20,18,.82),rgba(6,8,9,.72));border:1px solid rgba(212,175,55,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 16px 54px rgba(0,0,0,.2);transition:opacity .4s var(--easing),border-color .4s var(--easing),transform .4s var(--easing),background .4s var(--easing),box-shadow .4s var(--easing)}
+.org__card.hovered,.org__card:hover,.org__card:focus-visible{border-color:rgba(212,175,55,.72);transform:translateY(-4px);outline:none;box-shadow:0 0 0 1px rgba(0,240,255,.11),0 0 28px rgba(212,175,55,.12),0 22px 64px rgba(0,0,0,.34)}.org__card.hovered .org__avatar::after,.org__card:hover .org__avatar::after,.org__card:focus-visible .org__avatar::after{opacity:1;animation:spin 6s linear infinite}.org__tg::before{content:''}
+.org-modal__person{padding:14px;border:1px solid var(--line-soft);border-radius:12px;background:rgba(255,255,255,.015)}.org-modal__person-name{font-family:var(--font-display);font-size:17px;color:var(--fg-0);margin-bottom:9px}.org-modal__person-note{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin:-3px 0 9px}
+@media(prefers-reduced-motion:reduce){.cosmos-canvas{opacity:.48}.hero__static-logo{animation:none}}
+
+.org__card .org__avatar{display:flex}.org__card .org__name,.org__card .org__role,.org__card .org__tg{display:block}
+
+/* Hero title: clear gold contour matching the main ring */
+.hero__h1{font-family:'Russo One','Orbitron',system-ui,sans-serif;letter-spacing:.005em}
+.hero__h1 .low{color:#f4f2e9;-webkit-text-stroke:2px #d4af37;paint-order:stroke fill;text-shadow:0 2px 0 rgba(0,0,0,.88),0 0 2px #f6dc79,0 0 14px rgba(212,175,55,.32),0 0 34px rgba(212,175,55,.14)}
+.hero__h1 .bu,.hero__h1 .so{color:#e2bd43;-webkit-text-stroke:2.25px #d4af37;paint-order:stroke fill;text-shadow:0 2px 0 rgba(49,35,3,.92),0 0 3px #ffe68a,0 0 18px rgba(212,175,55,.52),0 0 42px rgba(212,175,55,.22)}
+@media(max-width:768px){.hero__h1 .low{-webkit-text-stroke-width:1.25px}.hero__h1 .bu,.hero__h1 .so{-webkit-text-stroke-width:1.5px}}
+
+/* Fixed frontal hero: brighter gold halo, sparse radial beams and clearer event line */
+.hero::before,.hero::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:0}
+.hero::before{
+  width:min(1180px,125vmin);height:min(1180px,125vmin);
+  background:repeating-conic-gradient(from 7deg,transparent 0 7deg,rgba(255,214,91,.18) 8deg,rgba(212,175,55,.07) 10deg,transparent 13deg 24deg);
+  -webkit-mask:radial-gradient(circle,transparent 0 31%,#000 42%,rgba(0,0,0,.72) 60%,transparent 76%);
+  mask:radial-gradient(circle,transparent 0 31%,#000 42%,rgba(0,0,0,.72) 60%,transparent 76%);
+  opacity:.72;animation:heroRays 5.5s ease-in-out infinite
+}
+.hero::after{
+  width:min(900px,92vmin);height:min(900px,92vmin);
+  border:2px solid rgba(255,219,105,.22);
+  box-shadow:0 0 18px rgba(255,221,113,.52),0 0 48px rgba(212,175,55,.34),0 0 110px rgba(212,175,55,.22),inset 0 0 54px rgba(212,175,55,.16);
+  opacity:.68;animation:heroHalo 4.6s ease-in-out infinite
+}
+@keyframes heroRays{0%,100%{opacity:.52;transform:translate(-50%,-50%) scale(.97)}50%{opacity:.82;transform:translate(-50%,-50%) scale(1.035)}}
+@keyframes heroHalo{0%,100%{opacity:.48}50%{opacity:.78}}
+.hero__glow{background:radial-gradient(circle,rgba(255,214,78,.21) 0%,rgba(212,175,55,.12) 24%,rgba(13,85,61,.08) 42%,transparent 64%);filter:blur(7px)}
+.hero__static-logo{animation:none;opacity:.82;filter:drop-shadow(0 0 15px rgba(255,225,119,.68)) drop-shadow(0 0 42px rgba(212,175,55,.44))}
+.hero__h1{font-size:clamp(60px,12.2vw,170px);margin-bottom:24px}
+.hero__sub{
+  font-size:clamp(21px,1.9vw,28px);font-weight:500;max-width:900px;line-height:1.46;margin-bottom:34px;
+  color:#f7f2e4;text-shadow:0 0 5px rgba(255,232,154,.42),0 0 18px rgba(212,175,55,.32),0 0 34px rgba(0,240,255,.10),0 2px 14px rgba(0,0,0,.95)
+}
+@media(max-width:768px){
+  .hero{padding-top:86px;padding-bottom:54px}
+  .hero::before{width:150vmin;height:150vmin;animation:heroRaysMobile 5.5s ease-in-out infinite}
+  .hero::after{width:112vmin;height:112vmin;animation:heroHaloMobile 4.6s ease-in-out infinite}
+  .hero__glow{animation:none;opacity:.62}
+  .hero__h1{font-size:clamp(52px,15.3vw,60px);line-height:.92;margin-bottom:22px}
+  .hero__sub{font-size:clamp(18px,5vw,21px);max-width:360px;line-height:1.48;margin-bottom:28px;padding:0 4px}
+}
+@keyframes heroRaysMobile{0%,100%{opacity:.24;transform:translate(-50%,-50%) scale(.98)}50%{opacity:.4;transform:translate(-50%,-50%) scale(1.02)}}
+@keyframes heroHaloMobile{0%,100%{opacity:.24}50%{opacity:.42}}
+@media(prefers-reduced-motion:reduce){.hero::before,.hero::after{animation:none}.hero__glow{animation:none}}
+
 </style>
 </head>
 <body>
@@ -624,6 +680,7 @@ body.no-3d .hero__static-logo { display: block; }
      ============================================================ -->
 <div class="grain"></div>
 <div class="vignette"></div>
+<canvas class="cosmos-canvas" id="cosmosCanvas" aria-hidden="true"></canvas>
 
 <!-- ============================================================
      CUSTOM CURSOR
@@ -695,25 +752,7 @@ body.no-3d .hero__static-logo { display: block; }
   <div class="hero__canvas" id="heroCanvas"></div>
   <div class="hero__bg-fallback"></div>
   <div class="hero__static-logo" id="heroStaticLogo" aria-hidden="true">
-    <svg viewBox="0 0 200 200" fill="none">
-      <defs>
-        <linearGradient id="chromeGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#f0f3f8"/>
-          <stop offset="50%" stop-color="#7a8090"/>
-          <stop offset="100%" stop-color="#d8dde6"/>
-        </linearGradient>
-      </defs>
-      <circle cx="100" cy="100" r="90" stroke="url(#chromeGrad)" stroke-width="2" fill="none"/>
-      <circle cx="100" cy="100" r="78" fill="#0a0a0e"/>
-      <g fill="url(#chromeGrad)">
-        <path d="M100 30 L110 60 L100 55 L90 60 Z"/>
-        <path d="M100 170 L90 140 L100 145 L110 140 Z"/>
-        <path d="M30 100 L60 90 L55 100 L60 110 Z"/>
-        <path d="M170 100 L140 110 L145 100 L140 90 Z"/>
-        <path d="M100 70 L115 85 L130 100 L115 115 L100 130 L85 115 L70 100 L85 85 Z" opacity="0.6"/>
-        <circle cx="100" cy="100" r="6" fill="#FF5E2E"/>
-      </g>
-    </svg>
+    <img src="assets/logo-na-transparent.png" alt="">
   </div>
 
   <!-- Dark backdrop behind hero text for readability on the bright 3D logo -->
@@ -883,105 +922,20 @@ body.no-3d .hero__static-logo { display: block; }
      ============================================================ -->
 <section class="section" id="org">
   <div class="wrap" style="position:relative">
-    <div class="section-head" data-reveal>
-      <span class="num">03 — ОРГКОМИТЕТ</span>
-      <div class="rule"></div>
-    </div>
-    <p class="org__lede reveal" data-reveal>Сеть людей, которые держат эту ассамблею. Нажми на карточку — откроются контакты.</p>
-    <canvas id="orgCanvas"></canvas>
+    <div class="section-head" data-reveal><span class="num">03 — КООРДИНАТОРЫ</span><div class="rule"></div></div>
+    <p class="org__lede reveal" data-reveal>Координаторы направлений ассамблеи. Нажми на карточку — откроются контакты.</p>
     <div class="org__grid reveal-stagger" id="orgGrid">
-
-      <div class="org__card" data-org="evgenii" data-links="kolya,nikita,dan,kolya2" data-name="Женя" data-role="Координация · Ведущий рабочих собраний" data-bio="Главный координатор ассамблеи. Связывает все службы, ведёт рабочие собрания, держит процесс от старта до финала." data-tg="Evgenii777274" data-tg-url="https://t.me/Evgenii777274" data-phone="" data-tasks="Связь подкомитетов · Сценарий · Тайминг">
-        <div class="org__avatar">Е</div>
-        <div class="org__name">Женя</div>
-        <div class="org__role">Координация, ведущий рабочих собраний</div>
-        <div class="org__tg">@Evgenii777274</div>
-      </div>
-
-      <div class="org__card" data-org="kuzma" data-links="" data-name="Кузьма" data-role="Казначей" data-bio="Отвечает за бюджет ассамблеи, сбор взносов, оплату площадки, питания и трансфера. Прозрачные отчёты." data-tg="" data-tg-url="" data-phone="" data-tasks="Бюджет · Отчёты · Смета">
-        <div class="org__avatar">К</div>
-        <div class="org__name">Кузьма</div>
-        <div class="org__role">Казначей</div>
-        <div class="org__tg">—</div>
-      </div>
-
-      <div class="org__card" data-org="varya" data-links="masha,anastya" data-name="Варя" data-role="Секретарь" data-bio="Протоколы собраний, рассылка решений, документооборот. Всё, что сказано — зафиксировано." data-tg="ggugelbugell" data-tg-url="https://t.me/ggugelbugell" data-phone="" data-tasks="Протоколы · Рассылки · Архив">
-        <div class="org__avatar">В</div>
-        <div class="org__name">Варя</div>
-        <div class="org__role">Секретарь</div>
-        <div class="org__tg">@ggugelbugell</div>
-      </div>
-
-      <div class="org__card" data-org="snezhana" data-links="pavel,lyubov" data-name="Снежана" data-role="Дизайнер" data-bio="Визуал ассамблеи: баннеры, презентации, оформление зала, печатная продукция, мерч." data-tg="Yoursad69" data-tg-url="https://t.me/Yoursad69" data-phone="" data-tasks="Баннеры · Полиграфия · Мерч">
-        <div class="org__avatar">С</div>
-        <div class="org__name">Снежана</div>
-        <div class="org__role">Дизайнер</div>
-        <div class="org__tg">@Yoursad69</div>
-      </div>
-
-      <div class="org__card" data-org="pavel" data-links="snezhana,lyubov" data-name="Паша" data-role="Дизайн и пиар" data-bio="Дизайн + пиар. Ведёт соцсети, делает анонсы, продвигает ассамблею в медиа и каналах." data-tg="TGsalesPavel" data-tg-url="https://t.me/TGsalesPavel" data-phone="" data-tasks="SMM · Анонсы · Партнёры">
-        <div class="org__avatar">П</div>
-        <div class="org__name">Паша</div>
-        <div class="org__role">Дизайн и пиар</div>
-        <div class="org__tg">@TGsalesPavel</div>
-      </div>
-
-      <div class="org__card" data-org="sasha" data-links="anuta,anna,ksenia" data-name="Саша и Аня" data-role="Расселение" data-bio="Встречают участников, распределяют по комнатам, решают бытовые вопросы на месте. Бронирование через них." data-tg="dozanarkoza111" data-tg-url="https://t.me/dozanarkoza111" data-phone="" data-tasks="Бронь · Заселение · Быт">
-        <div class="org__avatar">СА</div>
-        <div class="org__name">Саша и Аня</div>
-        <div class="org__role">Расселение</div>
-        <div class="org__tg">@dozanarkoza111</div>
-      </div>
-
-      <div class="org__card" data-org="lena1" data-links="zhanna,lyubov" data-name="Лена и Жанна" data-role="Питание" data-bio="Организуют завтраки, обеды, ужины и кофе-брейки. Договор со столовой, меню, контроль порций." data-tg="" data-tg-url="" data-phone="" data-tasks="Меню · Договор · Кейтеринг">
-        <div class="org__avatar">ЛЕ</div>
-        <div class="org__name">Лена и Жанна</div>
-        <div class="org__role">Питание</div>
-        <div class="org__tg">—</div>
-      </div>
-
-      <div class="org__card" data-org="danya" data-links="kolya2,tolya,ylia" data-name="Даня, Коля, Толя" data-role="Развлечения" data-bio="Баня, караоке, вечерние программы. Всё, что даёт заряд и объединяет после собраний." data-tg="" data-tg-url="" data-phone="" data-tasks="Баня · Караоке · Вечер">
-        <div class="org__avatar">ДА</div>
-        <div class="org__name">Даня, Коля, Толя</div>
-        <div class="org__role">Развлечения (баня, караоке)</div>
-        <div class="org__tg">—</div>
-      </div>
-
-      <div class="org__card" data-org="lyubov" data-links="lena1,snezhana,pavel" data-name="Лена и Люба" data-role="Сувенирка" data-bio="Печать мерча, раздаточные материалы, значки, браслеты, пакеты участника." data-tg="LuboveS" data-tg-url="https://t.me/LuboveS" data-phone="" data-tasks="Мерч · Раздатка · Упаковка">
-        <div class="org__avatar">ЛЮ</div>
-        <div class="org__name">Лена и Люба</div>
-        <div class="org__role">Сувенирка</div>
-        <div class="org__tg">@LuboveS</div>
-      </div>
-
-      <div class="org__card" data-org="masha" data-links="anastya,varya" data-name="Маша и Настя" data-role="Регистрация" data-bio="Встречают на входе, выдают бейджи и пакеты, ведут список участников, фиксируют посещаемость." data-tg="mariairkutsk" data-tg-url="https://t.me/mariairkutsk" data-phone="" data-tasks="Регистрация · Бейджи · Списки">
-        <div class="org__avatar">МА</div>
-        <div class="org__name">Маша и Настя</div>
-        <div class="org__role">Регистрация</div>
-        <div class="org__tg">@mariairkutsk</div>
-      </div>
-
-      <div class="org__card" data-org="kolya" data-links="evgenii,nikita" data-name="Коля и Никита" data-role="Трансфер" data-bio="Встречают в аэропорту и на вокзале, развозят до места, обратные рейсы. Главные по логистике." data-tg="" data-tg-url="" data-phone="" data-tasks="Аэропорт · Вокзал · Маршруты">
-        <div class="org__avatar">КН</div>
-        <div class="org__name">Коля и Никита</div>
-        <div class="org__role">Трансфер</div>
-        <div class="org__tg">—</div>
-      </div>
-
-      <div class="org__card" data-org="anna" data-links="ksenia,sasha" data-name="Аня и Ксюша" data-role="Ведущие собраний" data-bio="Ведущие зорьки и большого собрания. Голос, темп, настрой — от них зависит атмосфера зала." data-tg="Xsenia666" data-tg-url="https://t.me/Xsenia666" data-phone="" data-tasks="Ведение · Зорька · Собрание">
-        <div class="org__avatar">АН</div>
-        <div class="org__name">Аня и Ксюша</div>
-        <div class="org__role">Ведущие зорьки и большого собрания</div>
-        <div class="org__tg">@Xsenia666</div>
-      </div>
-
-      <div class="org__card" data-org="ylia" data-links="danya" data-name="Юля, Даня, Коля" data-role="Кофе-брейки" data-bio="Держат кофе-брейки между блоками: кофе, чай, печенье, фрукты. Пауза с ними — в радость." data-tg="yliazork_nails" data-tg-url="https://t.me/yliazork_nails" data-phone="" data-tasks="Кофе · Чай · Перекус">
-        <div class="org__avatar">ЮЛ</div>
-        <div class="org__name">Юля, Даня, Коля</div>
-        <div class="org__role">Кофе-брейки</div>
-        <div class="org__tg">@yliazork_nails</div>
-      </div>
-
+      <button type="button" class="org__card" data-org="kuzma" aria-haspopup="dialog" data-name="Кузьма" data-role="Казначей" data-bio="Отвечает за бюджет ассамблеи и прозрачность расчётов." data-tasks="Бюджет · Отчёты · Яндекс Пэй" data-contacts="[{&quot;name&quot;:&quot;Кузьма&quot;,&quot;phone&quot;:&quot;+7 983 538 0890&quot;,&quot;note&quot;:&quot;Яндекс Пэй&quot;}]"><span class="org__avatar">К</span><span class="org__name">Кузьма</span><span class="org__role">Казначей</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="varya" aria-haspopup="dialog" data-name="Варя" data-role="Секретарь" data-bio="Фиксирует решения, ведёт протоколы и документооборот ассамблеи." data-tasks="Протоколы · Документы · Координация" data-contacts="[{&quot;name&quot;:&quot;Варя&quot;,&quot;phone&quot;:&quot;+7 924 535 3669&quot;}]"><span class="org__avatar">В</span><span class="org__name">Варя</span><span class="org__role">Секретарь</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="snezhana" aria-haspopup="dialog" data-name="Снежана" data-role="Дизайнер" data-bio="Отвечает за визуальный образ, оформление и материалы ассамблеи." data-tasks="Айдентика · Оформление · Материалы" data-contacts="[{&quot;name&quot;:&quot;Снежана&quot;,&quot;phone&quot;:&quot;+7 914 906 6942&quot;}]"><span class="org__avatar">С</span><span class="org__name">Снежана</span><span class="org__role">Дизайнер</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="housing" aria-haspopup="dialog" data-name="Аня и Саша" data-role="Координаторы по расселению" data-bio="Помогают с размещением участников и бытовыми вопросами на месте." data-tasks="Бронь · Заселение · Быт" data-contacts="[{&quot;name&quot;:&quot;Аня&quot;,&quot;phone&quot;:&quot;+7 904 111 1336&quot;},{&quot;name&quot;:&quot;Саша&quot;,&quot;phone&quot;:&quot;+7 983 444 1219&quot;}]"><span class="org__avatar">АС</span><span class="org__name">Аня и Саша</span><span class="org__role">Координаторы по расселению</span><span class="org__tg">2 контакта</span></button>
+      <button type="button" class="org__card" data-org="food" aria-haspopup="dialog" data-name="Лена" data-role="Координатор по питанию" data-bio="Организует питание участников и контролирует работу с площадкой." data-tasks="Меню · Питание · Площадка" data-contacts="[{&quot;name&quot;:&quot;Лена&quot;,&quot;phone&quot;:&quot;+7 908 666 7628&quot;}]"><span class="org__avatar">Л</span><span class="org__name">Лена</span><span class="org__role">Координатор по питанию</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="fun" aria-haspopup="dialog" data-name="Даня" data-role="Координатор по развлечениям" data-bio="Собирает вечернюю программу и активности для участников." data-tasks="Программа · Активности · Атмосфера" data-contacts="[{&quot;name&quot;:&quot;Даня&quot;,&quot;phone&quot;:&quot;+7 983 403 3399&quot;}]"><span class="org__avatar">Д</span><span class="org__name">Даня</span><span class="org__role">Координатор по развлечениям</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="souvenirs" aria-haspopup="dialog" data-name="Люба и Лена" data-role="Координаторы по сувенирке" data-bio="Готовят сувениры, раздаточные материалы и пакеты участников." data-tasks="Сувениры · Раздатка · Упаковка" data-contacts="[{&quot;name&quot;:&quot;Люба&quot;,&quot;phone&quot;:&quot;+7 914 007 1146&quot;},{&quot;name&quot;:&quot;Лена&quot;,&quot;phone&quot;:&quot;+7 950 062 6835&quot;}]"><span class="org__avatar">ЛЛ</span><span class="org__name">Люба и Лена</span><span class="org__role">Координаторы по сувенирке</span><span class="org__tg">2 контакта</span></button>
+      <button type="button" class="org__card" data-org="registration" aria-haspopup="dialog" data-name="Маша" data-role="Регистрация" data-bio="Встречает участников, ведёт списки и помогает с регистрацией." data-tasks="Регистрация · Списки · Встреча" data-contacts="[{&quot;name&quot;:&quot;Маша&quot;,&quot;phone&quot;:&quot;+7 914 870 4939&quot;}]"><span class="org__avatar">М</span><span class="org__name">Маша</span><span class="org__role">Регистрация</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="transfer" aria-haspopup="dialog" data-name="Коля" data-role="Трансфер" data-bio="Координирует встречу, маршруты и перемещение участников." data-tasks="Встреча · Маршруты · Логистика" data-contacts="[{&quot;name&quot;:&quot;Коля&quot;,&quot;phone&quot;:&quot;+7 924 611 8055&quot;}]"><span class="org__avatar">К</span><span class="org__name">Коля</span><span class="org__role">Трансфер</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="hosts" aria-haspopup="dialog" data-name="Ксюша и Аня" data-role="Ведущие" data-bio="Ведут общую программу, задают темп и поддерживают контакт с залом." data-tasks="Ведение · Тайминг · Работа с залом" data-contacts="[{&quot;name&quot;:&quot;Ксюша&quot;,&quot;phone&quot;:&quot;+7 904 122 4292&quot;},{&quot;name&quot;:&quot;Аня&quot;,&quot;phone&quot;:&quot;+7 924 540 0095&quot;}]"><span class="org__avatar">КА</span><span class="org__name">Ксюша и Аня</span><span class="org__role">Ведущие</span><span class="org__tg">2 контакта</span></button>
+      <button type="button" class="org__card" data-org="coffee" aria-haspopup="dialog" data-name="Юля, Лена и Аня" data-role="Кофе-брейки" data-bio="Организуют кофе, чай и перекусы между программными блоками." data-tasks="Кофе · Чай · Перекус" data-contacts="[{&quot;name&quot;:&quot;Юля&quot;,&quot;phone&quot;:&quot;+7 964 119 1188&quot;},{&quot;name&quot;:&quot;Лена&quot;,&quot;phone&quot;:&quot;+7 908 666 7628&quot;,&quot;note&quot;:&quot;Координатор по питанию&quot;},{&quot;name&quot;:&quot;Аня&quot;,&quot;phone&quot;:&quot;+7 924 540 0095&quot;,&quot;telegram&quot;:&quot;annaVolova&quot;}]"><span class="org__avatar">ЮЛА</span><span class="org__name">Юля, Лена и Аня</span><span class="org__role">Кофе-брейки</span><span class="org__tg">@annaVolova · 3 контакта</span></button>
     </div>
   </div>
 </section>
@@ -1153,27 +1107,10 @@ body.no-3d .hero__static-logo { display: block; }
      ============================================================ -->
 <div class="org-modal" id="orgModal" aria-hidden="true">
   <div class="org-modal__backdrop" data-modal-close></div>
-  <div class="org-modal__panel" role="dialog" aria-modal="true" aria-labelledby="orgModalName">
+  <div class="org-modal__panel" role="dialog" aria-modal="true" aria-labelledby="orgModalName" tabindex="-1">
     <button class="org-modal__close" data-modal-close aria-label="Закрыть">×</button>
-    <div class="org-modal__head">
-      <div class="org-modal__avatar" id="orgModalAvatar"></div>
-      <div>
-        <div class="org-modal__role" id="orgModalRole"></div>
-        <h3 class="org-modal__name" id="orgModalName"></h3>
-      </div>
-    </div>
-    <p class="org-modal__bio" id="orgModalBio"></p>
-    <div class="org-modal__tasks" id="orgModalTasks"></div>
-    <div class="org-modal__contacts">
-      <a class="org-modal__contact org-modal__contact--tg" id="orgModalTg" href="#" target="_blank" rel="noopener" hidden>
-        <span class="org-modal__contact-k">Telegram</span>
-        <span class="org-modal__contact-v" id="orgModalTgV"></span>
-      </a>
-      <a class="org-modal__contact org-modal__contact--phone" id="orgModalPhone" href="#" hidden>
-        <span class="org-modal__contact-k">Телефон</span>
-        <span class="org-modal__contact-v" id="orgModalPhoneV"></span>
-      </a>
-    </div>
+    <div class="org-modal__head"><div class="org-modal__avatar" id="orgModalAvatar"></div><div><div class="org-modal__role" id="orgModalRole"></div><h3 class="org-modal__name" id="orgModalName"></h3></div></div>
+    <p class="org-modal__bio" id="orgModalBio"></p><div class="org-modal__tasks" id="orgModalTasks"></div><div class="org-modal__contacts" id="orgModalContacts"></div>
   </div>
 </div>
 
@@ -1194,7 +1131,7 @@ body.no-3d .hero__static-logo { display: block; }
      ============================================================ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<!-- Native scrolling is used when Lenis is unavailable. -->
 
 <!-- ============================================================
      MAIN SCRIPT
@@ -1543,159 +1480,20 @@ function countUp(el, target, duration = 1500, suffix = '') {
 })();
 
 /* ============================================================
-   ORG COMMITTEE NETWORK LINES
+   ORG CARD INTERACTION STATES
    ============================================================ */
-(function() {
-  const canvas = document.getElementById('orgCanvas');
-  const grid = document.getElementById('orgGrid');
-  if (!canvas || !grid) return;
-  const ctx = canvas.getContext('2d');
-  let hovered = null;
-
-  function resize() {
-    const r = grid.getBoundingClientRect();
-    canvas.width = r.width * window.devicePixelRatio;
-    canvas.height = r.height * window.devicePixelRatio;
-    canvas.style.width = r.width + 'px';
-    canvas.style.height = r.height + 'px';
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-  }
-  resize();
-  window.addEventListener('resize', () => { resize(); });
-
-  document.querySelectorAll('.org__card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      hovered = card;
-      const links = (card.dataset.links || '').split(',').filter(Boolean);
-      document.querySelectorAll('.org__card').forEach(c => {
-        const id = c.dataset.org;
-        if (c === card || links.includes(id)) c.classList.remove('dim');
-        else c.classList.add('dim');
-      });
-      card.classList.add('hovered');
-    });
-    card.addEventListener('mouseleave', () => {
-      hovered = null;
-      document.querySelectorAll('.org__card').forEach(c => {
-        c.classList.remove('dim');
-        c.classList.remove('hovered');
-      });
-    });
-  });
-
-  function getCenter(el) {
-    const r = el.getBoundingClientRect();
-    const parentR = grid.getBoundingClientRect();
-    return { x: r.left + r.width / 2 - parentR.left, y: r.top + r.height / 2 - parentR.top };
-  }
-
-  let phase = 0;
-  function draw() {
-    phase += 0.03;
-    const r = grid.getBoundingClientRect();
-    ctx.clearRect(0, 0, r.width, r.height);
-    if (!hovered) { requestAnimationFrame(draw); return; }
-    const a = getCenter(hovered);
-    const links = (hovered.dataset.links || '').split(',').filter(Boolean);
-    document.querySelectorAll('.org__card').forEach(c => {
-      if (c === hovered) return;
-      if (!links.includes(c.dataset.org)) return;
-      const b = getCenter(c);
-      const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-      grad.addColorStop(0, 'rgba(33, 230, 255, 0.9)');
-      grad.addColorStop(1, 'rgba(33, 230, 255, 0.4)');
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.stroke();
-      // Pulse dot
-      const t = (Math.sin(phase) + 1) / 2;
-      const px = a.x + (b.x - a.x) * t;
-      const py = a.y + (b.y - a.y) * t;
-      ctx.fillStyle = '#21E6FF';
-      ctx.shadowColor = '#21E6FF';
-      ctx.shadowBlur = 12;
-      ctx.beginPath();
-      ctx.arc(px, py, 3, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    });
-    requestAnimationFrame(draw);
-  }
-  if (window.matchMedia('(min-width: 1000px)').matches) {
-    draw();
-  }
-})();
+(function(){document.querySelectorAll('.org__card').forEach(card=>{const on=()=>card.classList.add('hovered'),off=()=>card.classList.remove('hovered');card.addEventListener('mouseenter',on);card.addEventListener('mouseleave',off);card.addEventListener('focus',on);card.addEventListener('blur',off);});})();
 
 /* ============================================================
-   ORG MODAL — open on card click
+   ORG MODAL — accessible contacts dialog
    ============================================================ */
-(function() {
-  const modal = document.getElementById('orgModal');
-  if (!modal) return;
-  const elAvatar = document.getElementById('orgModalAvatar');
-  const elRole = document.getElementById('orgModalRole');
-  const elName = document.getElementById('orgModalName');
-  const elBio = document.getElementById('orgModalBio');
-  const elTasks = document.getElementById('orgModalTasks');
-  const elTg = document.getElementById('orgModalTg');
-  const elTgV = document.getElementById('orgModalTgV');
-  const elPhone = document.getElementById('orgModalPhone');
-  const elPhoneV = document.getElementById('orgModalPhoneV');
-
-  function openModal(card) {
-    const d = card.dataset;
-    const avatar = card.querySelector('.org__avatar');
-    elAvatar.textContent = avatar ? avatar.textContent : '';
-    elRole.textContent = d.role || '';
-    elName.textContent = d.name || '';
-    elBio.textContent = d.bio || '';
-    elTasks.textContent = d.tasks ? 'Задачи: ' + d.tasks : '';
-
-    if (d.tg && d.tgUrl) {
-      elTg.href = d.tgUrl;
-      elTgV.textContent = '@' + d.tg;
-      elTg.hidden = false;
-    } else {
-      elTg.hidden = true;
-    }
-
-    if (d.phone && d.phone.replace(/\D/g, '').length >= 6) {
-      elPhone.href = 'tel:' + d.phone.replace(/[^\d+]/g, '');
-      elPhoneV.textContent = d.phone;
-      elPhone.hidden = false;
-    } else {
-      elPhone.hidden = true;
-    }
-
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.org__card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Don't open modal when clicking the inner telegram link
-      if (e.target.closest('a')) return;
-      openModal(card);
-    });
-  });
-
-  modal.querySelectorAll('[data-modal-close]').forEach(el => {
-    el.addEventListener('click', closeModal);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
+(function(){
+  const modal=document.getElementById('orgModal');if(!modal)return;const panel=modal.querySelector('.org-modal__panel'),closeButton=modal.querySelector('.org-modal__close'),avatar=document.getElementById('orgModalAvatar'),role=document.getElementById('orgModalRole'),name=document.getElementById('orgModalName'),bio=document.getElementById('orgModalBio'),tasks=document.getElementById('orgModalTasks'),root=document.getElementById('orgModalContacts');let returnFocus=null;
+  const tel=phone=>'tel:+'+phone.replace(/\D/g,'').replace(/^8/,'7');
+  function link(kind,value,label){const a=document.createElement('a'),k=document.createElement('span'),v=document.createElement('span');a.className='org-modal__contact org-modal__contact--'+kind;k.className='org-modal__contact-k';v.className='org-modal__contact-v';k.textContent=label;v.textContent=kind==='tg'?'@'+value:value;a.append(k,v);if(kind==='tg'){a.href='https://t.me/'+value;a.target='_blank';a.rel='noopener';}else a.href=tel(value);return a;}
+  function open(card){returnFocus=card;avatar.textContent=card.querySelector('.org__avatar')?.textContent||'';role.textContent=card.dataset.role||'';name.textContent=card.dataset.name||'';bio.textContent=card.dataset.bio||'';tasks.textContent=card.dataset.tasks?'Задачи: '+card.dataset.tasks:'';root.replaceChildren();let contacts=[];try{contacts=JSON.parse(card.dataset.contacts||'[]')}catch(error){console.error('[contacts] invalid data',error)}contacts.forEach(person=>{const block=document.createElement('div'),personName=document.createElement('div');block.className='org-modal__person';personName.className='org-modal__person-name';personName.textContent=person.name;block.append(personName);if(person.note){const note=document.createElement('div');note.className='org-modal__person-note';note.textContent=person.note;block.append(note)}if(person.phone)block.append(link('phone',person.phone,'Телефон'));if(person.telegram)block.append(link('tg',person.telegram,'Telegram'));root.append(block)});modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeButton.focus();}
+  function close(){if(!modal.classList.contains('open'))return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';returnFocus?.focus();}
+  document.querySelectorAll('.org__card').forEach(card=>card.addEventListener('click',()=>open(card)));modal.querySelectorAll('[data-modal-close]').forEach(el=>el.addEventListener('click',close));document.addEventListener('keydown',event=>{if(!modal.classList.contains('open'))return;if(event.key==='Escape'){event.preventDefault();close();return}if(event.key!=='Tab')return;const focusable=[...panel.querySelectorAll('button,a[href]')].filter(el=>!el.hidden);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}});
 })();
 
 /* ============================================================
@@ -1735,11 +1533,97 @@ function countUp(el, target, duration = 1500, suffix = '') {
 })();
 
 /* ============================================================
+   GLOBAL COSMOS — layered stars, twinkle and restrained comets
+   ============================================================ */
+(function(){
+  const canvas=document.getElementById('cosmosCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d',{alpha:true});
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let stars=[],comets=[],width=0,height=0,dpr=1,frame=0,lastDraw=0;
+
+  function makeStar(){
+    const depth=.18+Math.random()*.82,palette=Math.random();
+    return{x:Math.random()*width,y:Math.random()*height,depth,size:.25+Math.pow(depth,1.8)*2.15,speed:.035+depth*.18,phase:Math.random()*Math.PI*2,twinkle:.45+Math.random()*1.15,color:palette<.18?'212,175,55':palette<.64?'78,235,219':'226,247,242'};
+  }
+
+  function resetComet(comet,initial=false){
+    const radialBurst=Math.random()<.62;
+    comet.speed=1.2+Math.random()*1.75;
+    if(radialBurst){
+      const angle=Math.random()*Math.PI*2;
+      const originRadius=Math.min(width,height)*.32+Math.random()*55;
+      comet.x=width*.5+Math.cos(angle)*originRadius;
+      comet.y=height*.5+Math.sin(angle)*originRadius;
+      comet.vx=Math.cos(angle)*comet.speed;
+      comet.vy=Math.sin(angle)*comet.speed;
+    }else{
+      const fromTop=Math.random()<.54;
+      comet.x=fromTop?Math.random()*width*.9:-width*.14;
+      comet.y=fromTop?-80:Math.random()*height*.52;
+      comet.vx=comet.speed*(.78+Math.random()*.3);
+      comet.vy=comet.speed*(.34+Math.random()*.32);
+    }
+    comet.length=(radialBurst?150:110)+Math.random()*170;
+    comet.width=.9+Math.random()*1.6;
+    comet.alpha=.42+Math.random()*.36;
+    comet.color=Math.random()<.68?'232,190,66':'82,239,222';
+    comet.delay=initial?Math.random()*90:100+Math.random()*300;
+  }
+
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,1.5);width=innerWidth;height=innerHeight;
+    canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
+    canvas.style.width=width+'px';canvas.style.height=height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+    const mobile=width<=768;
+    stars=Array.from({length:mobile?195:480},makeStar);
+    comets=Array.from({length:mobile?4:8},()=>{const comet={};resetComet(comet,true);return comet});
+  }
+
+  function drawNebula(){
+    const teal=ctx.createRadialGradient(width*.25,height*.28,0,width*.25,height*.28,Math.max(width,height)*.58);
+    teal.addColorStop(0,'rgba(20,112,98,.105)');teal.addColorStop(.44,'rgba(6,55,48,.052)');teal.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=teal;ctx.fillRect(0,0,width,height);
+    const gold=ctx.createRadialGradient(width*.72,height*.42,0,width*.72,height*.42,Math.max(width,height)*.48);
+    gold.addColorStop(0,'rgba(151,102,22,.052)');gold.addColorStop(.55,'rgba(82,52,10,.02)');gold.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=gold;ctx.fillRect(0,0,width,height);
+  }
+
+  function drawStar(star,time,move){
+    if(move){star.y+=star.speed;star.x+=star.speed*.09;if(star.y>height+10||star.x>width+10){star.y=-10;star.x=Math.random()*width}}
+    const pulse=reduced?.72:.58+.42*Math.sin(time*star.twinkle+star.phase),alpha=(.18+star.depth*.62)*(.58+pulse*.42);
+    ctx.beginPath();ctx.fillStyle=`rgba(${star.color},${alpha})`;ctx.shadowColor=`rgba(${star.color},${alpha*.8})`;ctx.shadowBlur=star.depth>.8?star.depth*8:0;ctx.arc(star.x,star.y,star.size*(.84+pulse*.18),0,Math.PI*2);ctx.fill();
+    if(star.depth>.88){ctx.strokeStyle=`rgba(${star.color},${alpha*.26})`;ctx.lineWidth=.55;ctx.beginPath();ctx.moveTo(star.x-star.size*4,star.y);ctx.lineTo(star.x+star.size*4,star.y);ctx.moveTo(star.x,star.y-star.size*4);ctx.lineTo(star.x,star.y+star.size*4);ctx.stroke()}
+  }
+
+  function drawComet(comet,move){
+    if(comet.delay>0){if(move)comet.delay--;return}
+    if(move){comet.x+=comet.vx;comet.y+=comet.vy}
+    const magnitude=Math.hypot(comet.vx,comet.vy),nx=comet.vx/magnitude,ny=comet.vy/magnitude;
+    const gradient=ctx.createLinearGradient(comet.x,comet.y,comet.x-nx*comet.length,comet.y-ny*comet.length);
+    gradient.addColorStop(0,`rgba(255,255,240,${comet.alpha})`);gradient.addColorStop(.12,`rgba(${comet.color},${comet.alpha*.72})`);gradient.addColorStop(1,`rgba(${comet.color},0)`);
+    ctx.strokeStyle=gradient;ctx.lineWidth=comet.width;ctx.lineCap='round';ctx.shadowColor=`rgba(${comet.color},.78)`;ctx.shadowBlur=16;ctx.beginPath();ctx.moveTo(comet.x,comet.y);ctx.lineTo(comet.x-nx*comet.length,comet.y-ny*comet.length);ctx.stroke();
+    ctx.strokeStyle='rgba(255,248,214,.5)';ctx.lineWidth=.55;ctx.shadowBlur=7;ctx.beginPath();ctx.moveTo(comet.x,comet.y);ctx.lineTo(comet.x-nx*comet.length*.52,comet.y-ny*comet.length*.52);ctx.stroke();
+    ctx.beginPath();ctx.fillStyle=`rgba(255,255,244,${Math.min(.9,comet.alpha*1.7)})`;ctx.arc(comet.x,comet.y,comet.width*1.35,0,Math.PI*2);ctx.fill();
+    if(comet.x>width+comet.length||comet.x<-comet.length||comet.y>height+comet.length||comet.y<-comet.length)resetComet(comet);
+  }
+
+  function draw(move=true,now=0){
+    if(move&&now-lastDraw<33){requestAnimationFrame(time=>draw(true,time));return}
+    lastDraw=now;
+    frame++;const time=frame/60;ctx.clearRect(0,0,width,height);drawNebula();
+    for(const star of stars)drawStar(star,time,move);
+    if(!reduced)for(const comet of comets)drawComet(comet,move);
+    ctx.shadowBlur=0;if(!reduced)requestAnimationFrame(time=>draw(true,time));
+  }
+
+  resize();addEventListener('resize',resize,{passive:true});draw(!reduced,performance.now());
+})();
+
+/* ============================================================
    LENIS SMOOTH SCROLL
    ============================================================ */
 let lenis;
 function initLenis() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof Lenis === 'undefined') return;
   lenis = new Lenis({
     duration: 1.1,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1771,8 +1655,6 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 /* ---------- Detect capability ---------- */
 function canRun3D() {
@@ -1783,15 +1665,7 @@ function canRun3D() {
 }
 const isMobile = window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
 const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!canRun3D() || isMobile) {
-  document.body.classList.add('no-3d');
-  // continue but the 3D section will be hidden, static logo shown
-  throw new Error('no-3d');
-}
-if (prefersReduce) {
-  document.body.classList.add('no-3d');
-  throw new Error('reduced-motion');
-}
+if (!canRun3D() || prefersReduce) { document.body.classList.add('no-3d'); } else {
 
 /* ---------- Scene ---------- */
 const container = document.getElementById('heroCanvas');
@@ -1800,12 +1674,12 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setClearColor(0x000000, 0);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.1;
+renderer.toneMappingExposure = 0.86;
 container.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100);
-camera.position.set(0, 0, 5.6);
+camera.position.set(0, 0, 8.2);
 
 /* ---------- Environment (IBL) ---------- */
 const pmrem = new THREE.PMREMGenerator(renderer);
@@ -1829,12 +1703,12 @@ scene.add(ambient);
 
 /* ---------- Materials ---------- */
 const chromeMat = new THREE.MeshStandardMaterial({
-  color: 0xffe600,
-  metalness: 0.95,
-  roughness: 0.15,
-  envMapIntensity: 1.6,
-  emissive: 0x332200,
-  emissiveIntensity: 0.15
+  color: 0xf0c84a,
+  metalness: 0.9,
+  roughness: 0.16,
+  envMapIntensity: 1.55,
+  emissive: 0x755000,
+  emissiveIntensity: 0.3
 });
 const chromeMatLight = new THREE.MeshStandardMaterial({
   color: 0xfff4a0,
@@ -1843,12 +1717,6 @@ const chromeMatLight = new THREE.MeshStandardMaterial({
   envMapIntensity: 1.8,
   emissive: 0x443300,
   emissiveIntensity: 0.2
-});
-const darkMetalMat = new THREE.MeshStandardMaterial({
-  color: 0x0a0a0e,
-  metalness: 0.8,
-  roughness: 0.3,
-  envMapIntensity: 1.0
 });
 const accentMat = new THREE.MeshStandardMaterial({
   color: 0xffea00,
@@ -1866,6 +1734,14 @@ const iceMat = new THREE.MeshStandardMaterial({
   emissiveIntensity: 0.5,
   envMapIntensity: 1.4
 });
+const goldGlowMat = new THREE.MeshBasicMaterial({
+  color: 0xffd96a,
+  transparent: true,
+  opacity: 0.88,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+  toneMapped: false
+});
 
 /* ---------- Logo group ---------- */
 const logoGroup = new THREE.Group();
@@ -1873,13 +1749,13 @@ logoGroup.scale.setScalar(2.4);
 scene.add(logoGroup);
 
 /* Outer ring (yellow chrome torus) */
-const ringGeo = new THREE.TorusGeometry(1.85, 0.085, 32, 160);
+const ringGeo = new THREE.TorusGeometry(1.85, 0.11, 32, 160);
 const ring = new THREE.Mesh(ringGeo, chromeMat);
 logoGroup.add(ring);
 
-/* Outer accent ring (thinner, ice cyan) */
-const ringAccentGeo = new THREE.TorusGeometry(1.85, 0.014, 16, 160);
-const ringAccent = new THREE.Mesh(ringAccentGeo, iceMat);
+/* Outer gold-neon accent: light moves, geometry stays frontal. */
+const ringAccentGeo = new THREE.TorusGeometry(1.85, 0.024, 16, 160);
+const ringAccent = new THREE.Mesh(ringAccentGeo, goldGlowMat);
 logoGroup.add(ringAccent);
 
 /* Inner ring (thinner) */
@@ -1887,306 +1763,13 @@ const innerRingGeo = new THREE.TorusGeometry(1.62, 0.025, 16, 128);
 const innerRing = new THREE.Mesh(innerRingGeo, chromeMatLight);
 logoGroup.add(innerRing);
 
-/* Central dark plate */
-const plateGeo = new THREE.CylinderGeometry(1.58, 1.58, 0.07, 64);
-const plate = new THREE.Mesh(plateGeo, darkMetalMat);
-plate.rotation.x = Math.PI / 2;
-logoGroup.add(plate);
+/* Exact NA emblem — one transparent mesh inside the rotating logoGroup. */
+const INNER_RING_RADIUS=1.62,INNER_RING_TUBE=.025,INNER_FREE_DIAMETER=2*(INNER_RING_RADIUS-INNER_RING_TUBE),LOGO_DIAMETER=INNER_FREE_DIAMETER*.91;let logoMesh=null;const parentWorldQuaternion=new THREE.Quaternion(),cameraWorldQuaternion=new THREE.Quaternion();function keepLogoFacingCamera(){if(!logoMesh)return;logoGroup.getWorldQuaternion(parentWorldQuaternion);camera.getWorldQuaternion(cameraWorldQuaternion);logoMesh.quaternion.copy(parentWorldQuaternion).invert().multiply(cameraWorldQuaternion);}new THREE.TextureLoader().load('assets/logo-na-transparent.png',texture=>{texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());const material=new THREE.MeshBasicMaterial({map:texture,transparent:true,alphaTest:.02,depthTest:false,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});logoMesh=new THREE.Mesh(new THREE.PlaneGeometry(LOGO_DIAMETER,LOGO_DIAMETER),material);logoMesh.name='naLogoMesh';logoMesh.position.z=.09;logoMesh.renderOrder=20;logoGroup.add(logoMesh);window.__hero3D={logoGroup,logoMesh,camera,logoDiameter:LOGO_DIAMETER,innerFreeDiameter:INNER_FREE_DIAMETER,faceCamera:keepLogoFacingCamera};console.log('[3D] NA texture loaded',{logoDiameter:LOGO_DIAMETER,ratio:LOGO_DIAMETER/INNER_FREE_DIAMETER})},undefined,error=>console.error('[3D] NA texture failed',error));
 
-/* N/A accent — canvas texture with the same depth/glow technique as the h1 "БУ"/"СО".
-   Plane size matches the innerRing diameter (2 * 1.62 = 3.24), so the letters sit
-   inscribed in the ring. It is a child of logoGroup, so it inherits the same
-   rotation.y animation as the toruses. Nothing else in the scene is touched. */
-function createNATexture() {
-  const canvas = document.createElement('canvas');
-  const size = 512;
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, size, size);
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  // Same palette as .hero__h1 .bu / .so
-  const DARK_BRONZE = '#8B6F1F';
-  const GOLD       = '#D4AF37';
-  const LIGHT_GOLD = '#FFE680';
-  // 1) Warm gold glow (matches h1 text-shadow 0 0 12px / 32px rgba(212,175,55,...))
-  ctx.shadowColor = 'rgba(212, 175, 55, 0.55)';
-  ctx.shadowBlur  = 30;
-  ctx.fillStyle = GOLD;
-  ctx.font = '700 280px "Russo One", "Russo One Placeholder", sans-serif';
-  ctx.fillText('N A', size / 2, size / 2);
-  ctx.shadowBlur = 0;
-  // 2) Dark-bronze extrusion (matches h1 0 2px 0 rgba(0,0,0,0.6))
-  ctx.fillStyle = DARK_BRONZE;
-  const off = 4;
-  for (let i = 1; i <= 4; i++) {
-    ctx.fillText('N A', size / 2 + i * off, size / 2 + i * off);
-  }
-  // 3) Light-gold front face
-  ctx.fillStyle = LIGHT_GOLD;
-  ctx.fillText('N A', size / 2, size / 2);
-  // 4) Thin dark-bronze stroke (matches -webkit-text-stroke 1.5px #8B6F1F)
-  ctx.lineWidth = 6;
-  ctx.strokeStyle = DARK_BRONZE;
-  ctx.strokeText('N A', size / 2, size / 2);
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  return tex;
-}
-let naTexture = createNATexture();
-const naPlaneMat = new THREE.MeshBasicMaterial({
-  map: naTexture,
-  transparent: true,
-  toneMapped: false,
-  side: THREE.DoubleSide,
-  depthWrite: false
-});
-const naPlaneGeo = new THREE.PlaneGeometry(2.6, 2.6); // inscribed in innerRing (radius 1.62 -> diameter 3.24)
-const naPlane = new THREE.Mesh(naPlaneGeo, naPlaneMat);
-naPlane.position.z = 0.2; // in front of plate (±0.035) and inner ring (±0.025)
-logoGroup.add(naPlane);
-
-console.log('[3D] N/A canvas accent added, plane 2.6x2.6 in local units, centred at z=0.2');
-
-// Re-render the texture once Russo One is actually loaded, so the canvas doesn't
-// fall back to system sans-serif on the first paint.
-if (document.fonts && document.fonts.load) {
-  document.fonts.load('700 280px "Russo One"').then(() => {
-    const t = createNATexture();
-    naTexture = t;
-    naPlane.material.map = t;
-    naPlane.material.needsUpdate = true;
-  }).catch(() => { /* keep the first-render texture if the font promise rejects */ });
-}
-
-/* N/A letters — custom Shape-based N and A, with gold outline.
-   Each letter is a separate mesh, no overlap, fills inner ring diameter. */
-function makeNShape(w, h) {
-  // N built as a 3w x h rectangle with two triangular holes
-  const s = new THREE.Shape();
-  s.moveTo(0, 0);
-  s.lineTo(3 * w, 0);
-  s.lineTo(3 * w, h);
-  s.lineTo(0, h);
-  s.closePath();
-  // Upper-right triangle hole (between diagonal and right pillar top)
-  const h1 = new THREE.Path();
-  h1.moveTo(w, h);
-  h1.lineTo(2 * w, h);
-  h1.lineTo(2 * w, h * 0.5);
-  h1.closePath();
-  s.holes.push(h1);
-  // Lower-left triangle hole (between diagonal and left pillar bottom)
-  const h2 = new THREE.Path();
-  h2.moveTo(w, 0);
-  h2.lineTo(2 * w, 0);
-  h2.lineTo(w, h * 0.5);
-  h2.closePath();
-  s.holes.push(h2);
-  return s;
-}
-
-function makeAShape(w, h) {
-  // A built as a triangle with an inner triangle hole (creates pillars + crossbar)
-  const s = new THREE.Shape();
-  s.moveTo(0, 0);
-  s.lineTo(2 * w, 0);
-  s.lineTo(1.5 * w, h);
-  s.lineTo(0.5 * w, h);
-  s.closePath();
-  // Inner triangle: left side along (0,0)→(0.5w,h), right side along (2w,0)→(1.5w,h)
-  // At y=0.2h, x_left = 0.1w, x_right = 1.9w
-  // At y=0.72h, x_left = 0.36w, x_right = 1.64w
-  const h1 = new THREE.Path();
-  h1.moveTo(0.12 * w, 0.2 * h);
-  h1.lineTo(1.88 * w, 0.2 * h);
-  h1.lineTo(1.62 * w, 0.72 * h);
-  h1.lineTo(0.38 * w, 0.72 * h);
-  h1.closePath();
-  s.holes.push(h1);
-  return s;
-}
-
-// Letter dimensions (in 3D units, before logoGroup scale 2.4)
-const N_W = 0.46, N_H = 1.7;          // N: pillar width, height
-const A_W = 0.6, A_H = 1.7;            // A: base width, height
-const GAP = 0.4;                         // space between N and A
-const LETTER_DEPTH = 0.5;               // extrusion depth (Z)
-const BEVEL = 0.03;
-
-const letterMat = new THREE.MeshStandardMaterial({
-  color: 0xfff4a0,
-  metalness: 0.95,
-  roughness: 0.18,
-  envMapIntensity: 1.6,
-  emissive: 0x2a1f04,
-  emissiveIntensity: 0.5
-});
-const letterOutlineMat = new THREE.MeshStandardMaterial({
-  color: 0xD4AF37,
-  metalness: 0.9,
-  roughness: 0.25,
-  envMapIntensity: 1.4,
-  emissive: 0x3a2a08,
-  emissiveIntensity: 0.45
-});
-
-// Build N
-const nShape = makeNShape(N_W, N_H);
-const nGeo = new THREE.ExtrudeGeometry(nShape, {
-  depth: LETTER_DEPTH,
-  bevelEnabled: true,
-  bevelThickness: BEVEL,
-  bevelSize: BEVEL,
-  bevelSegments: 4,
-  curveSegments: 1
-});
-nGeo.translate(0, 0, 0);
-// Center each letter vertically around y=0
-const nBounds = new THREE.Box3().setFromObject(new THREE.Mesh(nGeo));
-const nCenterY = (nBounds.max.y + nBounds.min.y) / 2;
-nGeo.translate(0, -nCenterY, 0);
-// X: total N width = 3*N_W = 1.26, place centered
-const nWidth = 3 * N_W;
-nGeo.translate(-nWidth / 2, 0, 0);
-
-const nMesh = new THREE.Mesh(nGeo, letterMat);
-logoGroup.add(nMesh);
-// Outline N (slightly larger, behind)
-const nOutlineGeo = new THREE.ExtrudeGeometry(nShape, {
-  depth: LETTER_DEPTH + 0.12,
-  bevelEnabled: true,
-  bevelThickness: BEVEL + 0.02,
-  bevelSize: BEVEL + 0.02,
-  bevelSegments: 4,
-  curveSegments: 1
-});
-const nOBounds = new THREE.Box3().setFromObject(new THREE.Mesh(nOutlineGeo));
-const nOCenterY = (nOBounds.max.y + nOBounds.min.y) / 2;
-nOutlineGeo.translate(0, -nOCenterY, 0);
-nOutlineGeo.translate(-nWidth / 2, 0, 0);
-const nOutline = new THREE.Mesh(nOutlineGeo, letterOutlineMat);
-nOutline.position.z = -0.08;
-logoGroup.add(nOutline);
-
-// Build A
-const aShape = makeAShape(A_W, A_H);
-const aGeo = new THREE.ExtrudeGeometry(aShape, {
-  depth: LETTER_DEPTH,
-  bevelEnabled: true,
-  bevelThickness: BEVEL,
-  bevelSize: BEVEL,
-  bevelSegments: 4,
-  curveSegments: 1
-});
-const aBounds = new THREE.Box3().setFromObject(new THREE.Mesh(aGeo));
-const aCenterY = (aBounds.max.y + aBounds.min.y) / 2;
-aGeo.translate(0, -aCenterY, 0);
-const aWidth = 2 * A_W;
-aGeo.translate(aWidth / 2 + GAP / 2, 0, 0);
-const aMesh = new THREE.Mesh(aGeo, letterMat);
-logoGroup.add(aMesh);
-// Outline A
-const aOutlineGeo = new THREE.ExtrudeGeometry(aShape, {
-  depth: LETTER_DEPTH + 0.12,
-  bevelEnabled: true,
-  bevelThickness: BEVEL + 0.02,
-  bevelSize: BEVEL + 0.02,
-  bevelSegments: 4,
-  curveSegments: 1
-});
-const aOBounds = new THREE.Box3().setFromObject(new THREE.Mesh(aOutlineGeo));
-const aOCenterY = (aOBounds.max.y + aOBounds.min.y) / 2;
-aOutlineGeo.translate(0, -aOCenterY, 0);
-aOutlineGeo.translate(aWidth / 2 + GAP / 2, 0, 0);
-const aOutline = new THREE.Mesh(aOutlineGeo, letterOutlineMat);
-aOutline.position.z = -0.08;
-logoGroup.add(aOutline);
-
-// Back-side mirror copy so the logo reads from the rear too
-const nBack = new THREE.Mesh(nGeo, letterMat);
-nBack.rotation.y = Math.PI;
-nBack.position.z = -LETTER_DEPTH;
-logoGroup.add(nBack);
-const nOutlineBack = new THREE.Mesh(nOutlineGeo, letterOutlineMat);
-nOutlineBack.rotation.y = Math.PI;
-nOutlineBack.position.z = -LETTER_DEPTH + 0.08;
-logoGroup.add(nOutlineBack);
-const aBack = new THREE.Mesh(aGeo, letterMat);
-aBack.rotation.y = Math.PI;
-aBack.position.z = -LETTER_DEPTH;
-logoGroup.add(aBack);
-const aOutlineBack = new THREE.Mesh(aOutlineGeo, letterOutlineMat);
-aOutlineBack.rotation.y = Math.PI;
-aOutlineBack.position.z = -LETTER_DEPTH + 0.08;
-logoGroup.add(aOutlineBack);
-
-console.log('[3D] Custom N+A letters built (Shape-based, no overlap)');
-
-/* Central accent removed — the textured N/A disc is now the focal point */
-
-/* ---------- Orbital rings (chromatic aberration) ---------- */
-const orbitalGroup = new THREE.Group();
-scene.add(orbitalGroup);
-
-const chromaticVS = `
-varying vec2 vUv;
-varying float vAngle;
-void main() {
-  vUv = uv;
-  vAngle = atan2(position.y, position.x);
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}`;
-
-const chromaticFS = `
-uniform float uTime;
-uniform float uPhase;
-varying vec2 vUv;
-varying float vAngle;
-
-vec3 hsv2rgb(vec3 c) {
-  vec4 K = vec4(1.0, 2.0/3.0, 1.0/3.0, 3.0);
-  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
-  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
-}
-
-void main() {
-  // Rainbow around the ring
-  float t = uTime * 0.25 + vAngle * 1.0 + uPhase;
-  float hue = fract(t * 0.15);
-  vec3 color = hsv2rgb(vec3(hue, 0.85, 1.0));
-  // Brightness along ring
-  float bright = 0.7 + 0.3 * sin(vAngle * 3.0 + uTime * 1.2);
-  gl_FragColor = vec4(color * bright, 0.85);
-}`;
-
-function makeOrbital(radius, tube, phase, tilt) {
-  const geo = new THREE.TorusGeometry(radius, tube, 8, 200);
-  const mat = new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uPhase: { value: phase }
-    },
-    vertexShader: chromaticVS,
-    fragmentShader: chromaticFS,
-    transparent: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
-  });
-  const mesh = new THREE.Mesh(geo, mat);
-  mesh.rotation.x = tilt;
-  return mesh;
-}
-
-const orbit1 = makeOrbital(2.5, 0.014, 0, 0.1);
-const orbit2 = makeOrbital(2.75, 0.010, 1.5, -0.2);
-const orbit3 = makeOrbital(2.35, 0.008, 3.0, 0.3);
-orbitalGroup.add(orbit1, orbit2, orbit3);
+/* The three decorative outer orbital toruses were intentionally removed. */
 
 /* ---------- Particle field ---------- */
-const particleCount = 500;
+const particleCount = isMobile ? 220 : 500;
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
 const sizes = new Float32Array(particleCount);
@@ -2248,21 +1831,27 @@ composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 composer.addPass(new RenderPass(scene, camera));
 const bloom = new UnrealBloomPass(
   new THREE.Vector2(container.clientWidth, container.clientHeight),
-  0.7,   // strength
-  0.6,   // radius
-  0.25   // threshold
+  isMobile ? 0.42 : 0.56,  // strength
+  isMobile ? 0.5 : 0.58,   // radius
+  isMobile ? 0.29 : 0.25   // threshold
 );
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
-/* ---------- Mouse parallax ---------- */
+/* ---------- Mouse depth: fixed frontal ring, subtle approach / retreat ---------- */
 let mouseX = 0, mouseY = 0;
 let targetX = 0, targetY = 0;
+let mouseDepth = 0, targetDepth = 0;
 document.addEventListener('mousemove', (e) => {
   targetX = (e.clientX / window.innerWidth - 0.5) * 2;
   targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+  const edgeDistance = Math.min(1, Math.hypot(targetX, targetY));
+  targetDepth = (edgeDistance - 0.45) * 0.72;
 });
+document.addEventListener('mouseleave', () => {
+  targetDepth = 0;
 
+});
 /* ---------- Resize ---------- */
 function onResize() {
   const w = container.clientWidth;
@@ -2310,19 +1899,10 @@ function animate() {
   mouseX += (targetX - mouseX) * 0.05;
   mouseY += (targetY - mouseY) * 0.05;
 
-  // Logo rotation: Y axis continuous, X tilt subtle
-  logoGroup.rotation.y = t * 0.13;
-  logoGroup.rotation.x = Math.sin(t * 0.4) * 0.05;
-
-  // Orbital rings: sync with logo but with phase offset (parallax)
-  orbitalGroup.rotation.y = t * 0.13 - 0.15;
-  orbitalGroup.rotation.x = mouseY * 0.08;
-  orbitalGroup.rotation.z = mouseX * 0.08;
-
-  // Update shader uniforms
-  [orbit1, orbit2, orbit3].forEach(o => {
-    o.material.uniforms.uTime.value = t;
-  });
+  mouseDepth += (targetDepth - mouseDepth) * 0.06;
+  // The emblem remains perfectly frontal; only its light and depth breathe.
+  logoGroup.rotation.set(0, 0, 0);
+  goldGlowMat.opacity = 0.76 + Math.sin(t * 1.15) * 0.12;
 
   // Particle drift
   particles.rotation.y = t * 0.02 + mouseX * 0.15;
@@ -2332,20 +1912,20 @@ function animate() {
     pGeo.attributes.position.array[i + 1] += Math.sin(t + i) * 0.0005;
   });
 
-  // Camera parallax (mouse)
-  camera.position.x = mouseX * 0.4;
-  camera.position.y = -mouseY * 0.3;
+  // No lateral tilt: the cursor changes only camera distance.
+  camera.position.x = 0;
+  camera.position.y = 0;
   camera.lookAt(0, 0, 0);
+  keepLogoFacingCamera();
 
   // Scroll-linked: shrink and pull camera back
-  const scale = 1 - scrollT * 0.6;
+  const baseScale = isMobile ? 0.82 : 0.94;
+  const scale = baseScale * (1 - scrollT * 0.45);
   logoGroup.scale.setScalar(scale);
-  orbitalGroup.scale.setScalar(scale);
-  camera.position.z = 5.6 + scrollT * 3.0;
+  camera.position.z = 8.2 + scrollT * 2.4 + mouseDepth;
   // Move logo to upper-right as scroll progresses
   logoGroup.position.x = scrollT * 1.8;
   logoGroup.position.y = scrollT * 1.2;
-  orbitalGroup.position.copy(logoGroup.position);
 
   // HUD
   updateHUD(performance.now());
@@ -2356,6 +1936,7 @@ function animate() {
 animate();
 
 console.log('[3D] Logo scene initialized');
+}
 </script>
 
 </body>
