@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#060607" />
+<title>Ассамблея СО/БУ — проБУди СОзнание · Иркутск 2026</title>
+<meta name="description" content="Ассамблея подкомитетов «Больницы и Учреждения» и «Связь с Общественностью». 14–15 ноября 2026, Иркутск, Учебный центр профсоюзов." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --bg-0: #060607;
+  --bg-1: #08090C;
+  --bg-2: #0B0D12;
+  --bg-3: #111318;
+  --line-soft: rgba(238, 241, 245, 0.10);
+  --line-mid:  rgba(238, 241, 245, 0.22);
+  --line-strong: rgba(238, 241, 245, 0.35);
+
+  --fg-0: #EEF1F5;
+  --fg-1: #B6BAC4;
+  --fg-2: #8A8F99;
+  --fg-3: #5A5F69;
+
+  --fire:        #FFEA00;
+  --fire-soft:   rgba(255, 234, 0, 0.65);
+  --fire-glow:   rgba(255, 234, 0, 0.35);
+  --gold:        #D4AF37;
+  --gold-soft:   rgba(212, 175, 55, 0.65);
+  --gold-glow:   rgba(212, 175, 55, 0.35);
+  --ice:         #00F0FF;
+  --ice-soft:    rgba(0, 240, 255, 0.55);
+  --ice-glow:    rgba(0, 240, 255, 0.25);
+
+  --card-bg:     rgba(17, 19, 24, 0.55);
+  --card-border: rgba(238, 241, 245, 0.10);
+
+  --easing:      cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-display: 'Russo One', 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    'Rajdhani', 'Manrope', system-ui, sans-serif;
+  --font-mono:    'Share Tech Mono', 'Space Mono', ui-monospace, monospace;
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; overflow-x: hidden; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: var(--fg-0);
+  background: var(--bg-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+  position: relative;
+}
+@media (max-width: 768px), (pointer: coarse) { body { cursor: auto; } }
+
+img, svg, video, canvas { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: none; }
+a { color: inherit; text-decoration: none; cursor: none; }
+@media (max-width: 768px), (pointer: coarse) {
+  button, a { cursor: pointer; }
+}
+
+::selection { background: var(--fire); color: var(--bg-0); }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; line-height: 0.95; }
+.mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+.mono-sm { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; color: var(--fg-2); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+.section { position: relative; padding: clamp(80px, 12vw, 160px) 0; }
+.section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 56px; }
+.section-head .num { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.12em; color: var(--ice); text-transform: uppercase; }
+.section-head .rule { flex: 1; height: 1px; background: var(--line-mid); position: relative; overflow: hidden; }
+.section-head .rule::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--ice); transition: width 0.8s var(--easing); }
+.section-head.in .rule::after { width: 100%; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+@media (max-width: 768px) { .split { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ============================================================
+   GRAIN + VIGNETTE
+   ============================================================ */
+.grain {
+  position: fixed; inset: 0; z-index: 200; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+.vignette {
+  position: fixed; inset: 0; z-index: 199; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%);
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 300;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.cursor-dot { width: 6px; height: 6px; background: var(--fg-0); border-radius: 50%; }
+.cursor-ring {
+  width: 36px; height: 36px; border: 1px solid var(--line-strong); border-radius: 50%;
+  transition: width 0.25s var(--easing), height 0.25s var(--easing), border-color 0.25s var(--easing);
+}
+.cursor-ring.expand { width: 64px; height: 64px; border-color: var(--ice); }
+@media (max-width: 768px), (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+.preloader {
+  position: fixed; inset: 0; z-index: 500; background: var(--bg-0);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 32px;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.preloader.done { transform: translateY(-100%); }
+.preloader__title {
+  font-family: var(--font-display); font-size: clamp(32px, 6vw, 64px);
+  font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+  display: flex; gap: 2px;
+}
+.preloader__title span { display: inline-block; opacity: 0; transform: translateY(20px); transition: opacity 0.4s var(--easing), transform 0.4s var(--easing); }
+.preloader__title span.in { opacity: 1; transform: translateY(0); }
+.preloader__title .bu { color: var(--fire); }
+.preloader__title .so { color: var(--ice); }
+.preloader__sub { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2); }
+.preloader__bar { width: 280px; height: 1px; background: var(--line-soft); position: relative; overflow: hidden; }
+.preloader__bar::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: linear-gradient(90deg, var(--fire), var(--ice)); transition: width 0.3s linear; }
+.preloader__pct { font-family: var(--font-mono); font-size: 14px; color: var(--fg-1); }
+.preloader__status { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; color: var(--fg-3); text-transform: uppercase; min-height: 16px; }
+
+/* ============================================================
+   SCROLL PROGRESS + HEADER
+   ============================================================ */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 250;
+  background: linear-gradient(90deg, var(--fire), var(--ice));
+  transform-origin: left; transform: scaleX(0);
+  width: 100%;
+}
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px clamp(20px, 4vw, 56px);
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent;
+  transition: background 0.3s var(--easing), backdrop-filter 0.3s var(--easing), border-color 0.3s var(--easing);
+  border-bottom: 1px solid transparent;
+}
+.header.scrolled { background: rgba(6, 6, 7, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: var(--line-soft); }
+.header__brand { display: flex; align-items: center; gap: 12px; }
+.header__logo { width: 28px; height: 28px; }
+.header__title { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: 0.02em; }
+.header__title .sep { color: var(--fg-3); margin: 0 4px; }
+.header__title .loc { color: var(--fg-2); font-weight: 400; }
+
+.header__nav { display: flex; gap: 28px; }
+.header__nav a { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-0); position: relative; padding: 4px 0; transition: color 0.2s; font-weight: 500; }
+.header__nav a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--ice); transition: width 0.3s var(--easing); }
+.header__nav a:hover { color: var(--fg-0); }
+.header__nav a.active { color: var(--ice); }
+.header__nav a.active::after { width: 100%; }
+
+.header__cta { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1px solid var(--line-mid); border-radius: 100px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.header__cta:hover { background: var(--ice); color: var(--bg-0); border-color: var(--ice); }
+
+.burger { display: none; width: 36px; height: 36px; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+.burger span { width: 22px; height: 1.5px; background: var(--fg-0); transition: transform 0.3s var(--easing), opacity 0.3s var(--easing); }
+.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .header__nav, .header__cta { display: none; }
+  .burger { display: flex; }
+}
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 90; background: var(--bg-0);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.mobile-menu.open { transform: translateY(0); }
+.mobile-menu a { font-family: var(--font-display); font-size: 38px; font-weight: 500; opacity: 0; transform: translateY(20px); transition: opacity 0.4s var(--easing), transform 0.4s var(--easing); }
+.mobile-menu.open a { opacity: 1; transform: translateY(0); }
+.mobile-menu.open a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 0.2s; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 0.25s; }
+.mobile-menu.open a:nth-child(5) { transition-delay: 0.3s; }
+.mobile-menu.open a:nth-child(6) { transition-delay: 0.35s; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  position: relative; display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 30px; border-radius: 100px; font-family: var(--font-mono);
+  font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+  transition: transform 0.3s var(--easing), background 0.3s, color 0.3s, border-color 0.3s;
+  will-change: transform;
+}
+.btn--primary { background: #D4AF37; color: var(--bg-0); box-shadow: 0 0 0 1px #D4AF37, 0 0 30px rgba(212,175,55,0.35); }
+.btn--primary:hover { background: #E8C860; box-shadow: 0 0 0 1px #E8C860, 0 0 36px rgba(212,175,55,0.5); }
+.btn--ghost { background: transparent; color: var(--fg-0); border: 1px solid var(--line-mid); }
+.btn--ghost:hover { border-color: var(--ice); color: var(--ice); }
+.btn--big { padding: 20px 40px; font-size: 16px; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 100px clamp(20px, 4vw, 56px) 60px;
+  overflow: hidden;
+}
+.hero__canvas {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero__canvas canvas { display: block; width: 100%; height: 100%; }
+.hero__bg-fallback {
+  position: absolute; inset: 0; z-index: 0;
+  display: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 94, 46, 0.08), transparent 50%),
+              radial-gradient(circle at 30% 70%, rgba(33, 230, 255, 0.06), transparent 50%);
+}
+.hero__static-logo {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: clamp(280px, 50vw, 520px); height: clamp(280px, 50vw, 520px);
+  display: none;
+  animation: spinY 25s linear infinite;
+}
+@keyframes spinY { from { transform: translate(-50%, -50%) rotateY(0deg); } to { transform: translate(-50%, -50%) rotateY(360deg); } }
+
+.hero__inner { position: relative; z-index: 2; width: 100%; max-width: 1400px; display: flex; flex-direction: column; align-items: center; }
+.hero__tag { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-0); font-weight: 500; border: 1px solid var(--line-mid); padding: 10px 18px; border-radius: 100px; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; position: relative; z-index: 3; backdrop-filter: blur(4px); background: rgba(6,6,7,0.3); }
+.hero__tag .dot { width: 6px; height: 6px; background: var(--ice); border-radius: 50%; box-shadow: 0 0 8px var(--ice); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.hero__h1 {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 13vw, 180px);
+  font-weight: 400; letter-spacing: -0.01em; line-height: 0.9;
+  text-align: center;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 3;
+  text-transform: none;
+}
+.hero__h1 .line { display: block; overflow: hidden; }
+.hero__h1 .line > span { display: inline-block; transform: translateY(110%); transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+.hero__h1.in .line > span { transform: translateY(0); }
+.hero__h1 .line:nth-child(2) > span { transition-delay: 0.12s; }
+/* "про" + "ди" + "знание" = lowercase, silver-white, no glow, regular weight */
+.hero__h1 .low { color: #E8E8E8; font-weight: 400; }
+/* "БУ" и "СО" = UPPERCASE, IDENTICAL gold (#D4AF37) with dark-bronze stroke, warm emissive */
+.hero__h1 .bu, .hero__h1 .so {
+  color: #D4AF37;
+  -webkit-text-stroke: 1.5px #8B6F1F;
+  text-shadow:
+    0 0 12px rgba(212, 175, 55, 0.35),
+    0 0 32px rgba(212, 175, 55, 0.18),
+    0 2px 0 rgba(0,0,0,0.6);
+  font-weight: 400;
+}
+
+/* Dark backdrop behind hero text for readability on the bright 3D logo */
+.hero__text-backdrop {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 90vw);
+  height: min(500px, 70vh);
+  background: radial-gradient(ellipse at center, rgba(6,6,7,0.7) 0%, rgba(6,6,7,0.35) 45%, transparent 75%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Warm gold radial glow behind the 3D logo */
+.hero__glow {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vmin; height: 120vmin;
+  background: radial-gradient(circle, rgba(212,175,55,0.14) 0%, rgba(212,175,55,0.06) 25%, transparent 55%);
+  z-index: 0;
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Scan lines overlay for cyberpunk feel */
+.hero__scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+/* Glitch effect removed — БУ/СО are now clean gold with no RGB-split */
+
+.hero__sub { font-family: var(--font-body); font-size: clamp(19px, 1.7vw, 24px); font-weight: 400; color: var(--fg-0); text-align: center; max-width: 720px; margin-bottom: 36px; position: relative; z-index: 3; text-shadow: 0 2px 12px rgba(0,0,0,0.85); letter-spacing: 0.02em; line-height: 1.5; }
+
+.hero__readouts { display: flex; gap: clamp(24px, 5vw, 64px); margin-bottom: 36px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 3; }
+.hero__readout { text-align: center; }
+.hero__readout .val { font-family: var(--font-display); font-size: clamp(40px, 4.2vw, 60px); font-weight: 800; letter-spacing: -0.01em; line-height: 1; color: var(--fg-0); text-shadow: 0 2px 16px rgba(0,0,0,0.9); }
+.hero__readout .val .fire { color: var(--fire); text-shadow: 0 0 20px var(--fire-glow), 0 2px 16px rgba(0,0,0,0.9); }
+.hero__readout .val .ice { color: var(--ice); text-shadow: 0 0 20px var(--ice-glow), 0 2px 16px rgba(0,0,0,0.9); }
+.hero__readout .lbl { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.18em; color: var(--fg-1); text-transform: uppercase; margin-top: 10px; font-weight: 500; }
+
+.hero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* HUD around the 3D object */
+.hud {
+  position: absolute; z-index: 3; pointer-events: none;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; font-weight: 500;
+  text-transform: uppercase; color: var(--fg-1);
+}
+.hud__tl { top: 100px; left: clamp(20px, 4vw, 56px); }
+.hud__tr { top: 100px; right: clamp(20px, 4vw, 56px); text-align: right; }
+.hud__bl { bottom: 40px; left: clamp(20px, 4vw, 56px); }
+.hud__br { bottom: 40px; right: clamp(20px, 4vw, 56px); text-align: right; }
+.hud .lbl { color: var(--fg-3); margin-bottom: 4px; }
+.hud .val { color: var(--fg-0); font-size: 13px; }
+.hud .val .fire { color: var(--fire); }
+.hud .val .ice { color: var(--ice); }
+
+@media (max-width: 768px) {
+  .hud { display: none; }
+}
+
+.scroll-cue { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-1); font-weight: 500; }
+.scroll-cue__line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--ice), transparent); position: relative; overflow: hidden; }
+.scroll-cue__line::after { content: ''; position: absolute; top: -40px; left: 0; width: 100%; height: 40px; background: linear-gradient(to bottom, transparent, var(--ice)); animation: scrollLine 2s ease-in-out infinite; }
+@keyframes scrollLine { 0% { top: -40px; } 100% { top: 40px; } }
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee { padding: 28px 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); overflow: hidden; }
+.marquee__track { display: flex; gap: 32px; white-space: nowrap; animation: marquee 32s linear infinite; }
+.marquee__item { font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 48px); font-weight: 500; letter-spacing: -0.01em; color: var(--fg-0); display: inline-flex; align-items: center; gap: 32px; }
+.marquee__item .dot { color: var(--fire); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   MANIFESTO
+   ============================================================ */
+.manifesto p { font-family: var(--font-display); font-size: clamp(26px, 3vw, 40px); font-weight: 400; line-height: 1.35; letter-spacing: -0.01em; color: var(--fg-0); margin-bottom: 28px; max-width: 900px; }
+.manifesto p .accent { color: var(--fire); }
+.manifesto p .ice { color: var(--ice); }
+.manifesto__lede { color: var(--fg-1); font-size: clamp(19px, 1.4vw, 22px); font-family: var(--font-body); font-weight: 300; margin-bottom: 56px; max-width: 640px; line-height: 1.5; }
+.manifesto .word { display: inline-block; opacity: 0.15; transition: opacity 0.4s var(--easing); }
+.manifesto .word.in { opacity: 1; }
+
+/* ============================================================
+   PROGRAM
+   ============================================================ */
+.program { position: relative; }
+.program__pin { display: grid; grid-template-columns: 200px 1fr; gap: 48px; min-height: 80vh; }
+.program__progress { position: relative; padding-top: 8px; }
+.program__progress-track { width: 1px; height: 100%; background: var(--line-soft); position: relative; }
+.program__progress-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0; background: linear-gradient(to bottom, var(--fire), var(--ice)); transition: height 0.4s var(--easing); }
+.program__steps { display: flex; flex-direction: column; gap: 4px; }
+.program__step-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; color: var(--fg-2); text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+.program__step { padding: 24px 0; border-top: 1px solid var(--line-soft); opacity: 0.3; transition: opacity 0.4s var(--easing); }
+.program__step.active { opacity: 1; }
+.program__step:last-child { border-bottom: 1px solid var(--line-soft); }
+.program__step h3 { font-family: var(--font-display); font-size: clamp(28px, 2.8vw, 42px); font-weight: 500; letter-spacing: -0.01em; margin-bottom: 14px; }
+.program__step h3 .day { color: var(--ice); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.15em; margin-right: 12px; vertical-align: middle; }
+.program__step .body { font-family: var(--font-body); font-size: 17px; color: var(--fg-1); line-height: 1.65; max-width: 640px; }
+.program__step .body ul { list-style: none; margin-top: 8px; }
+.program__step .body li { position: relative; padding-left: 18px; margin-bottom: 4px; }
+.program__step .body li::before { content: '—'; position: absolute; left: 0; color: var(--fg-3); }
+.program__note { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; color: var(--fg-2); text-transform: uppercase; margin-top: 32px; }
+@media (max-width: 768px) {
+  .program__pin { grid-template-columns: 1fr; min-height: auto; }
+  .program__progress { display: none; }
+  .program__step { opacity: 1 !important; }
+}
+
+/* ============================================================
+   ORG COMMITTEE
+   ============================================================ */
+.org__lede { font-family: var(--font-body); font-size: 19px; color: var(--fg-1); max-width: 640px; margin-bottom: 48px; line-height: 1.5; }
+.org__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; z-index: 2; }
+.org__card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: opacity 0.4s var(--easing), border-color 0.4s var(--easing), transform 0.4s var(--easing), background 0.4s var(--easing);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+.org__card.dim { opacity: 0.35; }
+.org__card.hovered { border-color: var(--ice); transform: translateY(-2px); }
+.org__avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: 0.05em; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border: 1px solid var(--line-mid); margin-bottom: 18px; position: relative; }
+.org__avatar::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 1px solid transparent; background: conic-gradient(from 0deg, var(--fire), var(--ice), var(--fire)) border-box; -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.5; transition: opacity 0.3s; }
+.org__card.hovered .org__avatar::after { opacity: 1; animation: spin 4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.org__name { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.org__role { font-family: var(--font-body); font-size: 15px; color: var(--fg-1); line-height: 1.45; margin-bottom: 12px; }
+.org__tg { font-family: var(--font-mono); font-size: 12px; color: var(--ice); letter-spacing: 0.05em; }
+.org__card { cursor: pointer; }
+
+/* ============================================================
+   ORG MODAL
+   ============================================================ */
+.org-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; }
+.org-modal.open { display: flex; }
+.org-modal__backdrop { position: absolute; inset: 0; background: rgba(4, 4, 5, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.org-modal__panel {
+  position: relative; max-width: 560px; width: 100%;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  border: 1px solid var(--line-mid);
+  border-radius: 18px;
+  padding: 36px 36px 32px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.08);
+  font-family: var(--font-body);
+  color: var(--fg-1);
+  transform: translateY(20px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.4s var(--easing), opacity 0.3s;
+  max-height: 90vh; overflow-y: auto;
+}
+.org-modal.open .org-modal__panel { transform: translateY(0) scale(1); opacity: 1; }
+.org-modal__close {
+  position: absolute; top: 16px; right: 18px; width: 36px; height: 36px;
+  background: transparent; border: 1px solid var(--line-mid); border-radius: 50%;
+  color: var(--fg-1); font-size: 22px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.org-modal__close:hover { background: var(--ice); color: var(--bg-0); border-color: var(--ice); }
+.org-modal__head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; padding-right: 40px; }
+.org-modal__avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 600; font-size: 24px;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2);
+  color: var(--fg-0);
+  flex-shrink: 0;
+}
+.org-modal__role {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); font-weight: 500;
+  margin-bottom: 6px;
+}
+.org-modal__name {
+  font-family: var(--font-display); font-weight: 600; font-size: 28px;
+  letter-spacing: -0.01em; line-height: 1.05; color: var(--fg-0); margin: 0;
+}
+.org-modal__bio {
+  font-size: 16px; line-height: 1.6; color: var(--fg-1); margin: 0 0 20px;
+}
+.org-modal__tasks {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-2);
+  padding: 14px 16px; border: 1px solid var(--line-soft); border-radius: 10px;
+  margin-bottom: 24px; background: rgba(212, 175, 55, 0.04);
+}
+.org-modal__contacts { display: flex; flex-direction: column; gap: 10px; }
+.org-modal__contact {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border: 1px solid var(--line-mid); border-radius: 12px;
+  text-decoration: none; color: var(--fg-0);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s var(--easing);
+}
+.org-modal__contact:hover { background: rgba(212, 175, 55, 0.08); border-color: var(--gold); transform: translateY(-1px); }
+.org-modal__contact-k { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2); }
+.org-modal__contact-v { font-family: var(--font-display); font-size: 17px; font-weight: 500; }
+.org-modal__contact--tg .org-modal__contact-v { color: var(--ice); }
+.org-modal__contact--phone .org-modal__contact-v { color: var(--gold); }
+@media (max-width: 540px) {
+  .org-modal__panel { padding: 28px 22px 24px; }
+  .org-modal__head { gap: 14px; }
+  .org-modal__avatar { width: 56px; height: 56px; font-size: 19px; }
+  .org-modal__name { font-size: 22px; }
+}
+.org__tg::before { content: '@'; color: var(--fg-3); margin-right: 2px; }
+
+#org-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+
+@media (max-width: 1000px) { .org__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .org__grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   VENUE
+   ============================================================ */
+.venue__map { aspect-ratio: 4/3; border: 1px solid var(--line-mid); border-radius: 14px; overflow: hidden; background: var(--bg-2); position: relative; }
+.venue__map iframe { width: 100%; height: 100%; border: 0; filter: invert(0.92) hue-rotate(180deg); }
+.venue__facts { display: flex; flex-direction: column; }
+.venue__fact { padding: 20px 0; border-top: 1px solid var(--line-soft); display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: baseline; opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--easing), transform 0.6s var(--easing); }
+.venue__fact.in { opacity: 1; transform: translateY(0); }
+.venue__fact:last-child { border-bottom: 1px solid var(--line-soft); }
+.venue__fact .k { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2); font-weight: 500; }
+.venue__fact .v { font-family: var(--font-display); font-size: 23px; font-weight: 500; color: var(--fg-0); }
+
+/* ============================================================
+   TRAVEL
+   ============================================================ */
+.travel__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.travel__card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 28px 24px; transition: border-color 0.3s, transform 0.3s var(--easing); }
+.travel__card:hover { border-color: var(--ice); transform: translateY(-2px); }
+.travel__city { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-1); margin-bottom: 16px; font-weight: 500; }
+.travel__price { font-family: var(--font-display); font-size: clamp(34px, 2.8vw, 44px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--fg-0); margin-bottom: 8px; }
+.travel__price .cur { color: var(--ice); font-size: 0.6em; vertical-align: top; margin-left: 4px; }
+.travel__sub { font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); letter-spacing: 0.1em; text-transform: uppercase; }
+.travel__note { margin-top: 32px; font-family: var(--font-body); font-size: 16px; color: var(--fg-1); }
+.travel__note strong { color: var(--ice); font-weight: 500; }
+@media (max-width: 1000px) { .travel__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .travel__grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq__list { border-top: 1px solid var(--line-soft); }
+.faq__item { border-bottom: 1px solid var(--line-soft); }
+.faq__q { display: flex; align-items: center; justify-content: space-between; padding: 30px 0; width: 100%; text-align: left; font-family: var(--font-display); font-size: clamp(22px, 1.9vw, 28px); font-weight: 500; letter-spacing: -0.01em; color: var(--fg-0); transition: color 0.2s; }
+.faq__q:hover { color: var(--ice); }
+.faq__icon { width: 32px; height: 32px; border: 1px solid var(--line-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; transition: transform 0.3s var(--easing), background 0.3s, color 0.3s, border-color 0.3s; flex-shrink: 0; margin-left: 24px; }
+.faq__item.open .faq__icon { transform: rotate(45deg); background: var(--ice); color: var(--bg-0); border-color: var(--ice); }
+.faq__a { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--easing); }
+.faq__a-inner { padding: 0 0 30px; max-width: 820px; font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--fg-1); }
+
+/* ============================================================
+   FINAL CTA + FOOTER
+   ============================================================ */
+.cta-final { text-align: center; padding: clamp(100px, 14vw, 200px) 0; position: relative; }
+.cta-final__h2 { font-family: var(--font-display); font-size: clamp(56px, 10vw, 140px); font-weight: 600; letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 28px; }
+.cta-final__h2 .bu { color: var(--fire); text-shadow: 0 0 60px var(--fire-glow), 0 0 120px var(--fire-glow); }
+.cta-final__h2 .so { color: var(--ice); text-shadow: 0 0 60px var(--ice-glow), 0 0 120px var(--ice-glow); }
+.cta-final__sub { font-family: var(--font-body); font-size: clamp(20px, 1.7vw, 26px); color: var(--fg-1); margin-bottom: 44px; line-height: 1.5; }
+
+.footer { border-top: 1px solid var(--line-soft); padding: 64px 0 40px; position: relative; overflow: hidden; }
+.footer__outline { position: absolute; left: 0; right: 0; bottom: -40px; font-family: var(--font-display); font-size: clamp(80px, 14vw, 200px); font-weight: 700; letter-spacing: -0.04em; line-height: 0.85; text-align: center; color: transparent; -webkit-text-stroke: 1px var(--line-mid); pointer-events: none; user-select: none; opacity: 0.5; will-change: transform; }
+.footer__inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
+.footer__col h4 { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2); margin-bottom: 18px; font-weight: 500; }
+.footer__col a { display: block; font-family: var(--font-body); font-size: 16px; color: var(--fg-0); margin-bottom: 10px; transition: color 0.2s; }
+.footer__col a:hover { color: var(--ice); }
+.footer__brand .name { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.footer__brand .url { font-family: var(--font-mono); font-size: 14px; color: var(--ice); letter-spacing: 0.05em; }
+.footer__bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); letter-spacing: 0.1em; text-transform: uppercase; }
+@media (max-width: 768px) { .footer__inner { grid-template-columns: 1fr 1fr; } .footer__bottom { flex-direction: column; gap: 8px; } }
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--easing), transform 0.8s var(--easing); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--easing), transform 0.6s var(--easing); }
+.reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0.0s; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 0.08s; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 0.16s; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 0.24s; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 0.32s; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 0.40s; }
+.reveal-stagger.in > *:nth-child(7) { transition-delay: 0.48s; }
+.reveal-stagger.in > *:nth-child(8) { transition-delay: 0.56s; }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .marquee__track { animation: none; }
+  .hero__static-logo { animation: none; }
+}
+
+/* ============================================================
+   MOBILE FALLBACK: no Three.js, use static rotating SVG
+   ============================================================ */
+body.no-3d .hero__canvas { display: none; }
+body.no-3d .hero__bg-fallback { display: block; }
+body.no-3d .hero__static-logo { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     GRAIN + VIGNETTE
+     ============================================================ -->
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+     ============================================================ -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ============================================================
+     SCROLL PROGRESS
+     ============================================================ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============================================================
+     PRELOADER
+     ============================================================ -->
+<div class="preloader" id="preloader">
+  <div class="preloader__title" id="preloaderTitle">
+    <span>п</span><span>р</span><span>о</span><span class="bu">Б</span><span class="bu">У</span><span>д</span><span>и</span><span>&nbsp;</span><span class="so">С</span><span class="so">О</span><span>з</span><span>н</span><span>а</span><span>н</span><span>и</span><span>е</span>
+  </div>
+  <div class="preloader__bar" id="preloaderBar"></div>
+  <div class="preloader__pct" id="preloaderPct">0%</div>
+  <div class="preloader__sub">АССАМБЛЕЯ СО/БУ · ИРКУТСК 2026</div>
+  <div class="preloader__status" id="preloaderStatus">ЗАГРУЗКА ЯДРА</div>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header" id="header">
+  <a href="#hero" class="header__brand">
+    <svg class="header__logo" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1"/>
+      <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+      <path d="M16 4 L17.5 14 L16 12 L14.5 14 Z" fill="var(--fire)"/>
+      <path d="M16 28 L14.5 18 L16 20 L17.5 18 Z" fill="var(--ice)"/>
+      <path d="M4 16 L14 14.5 L12 16 L14 17.5 Z" fill="var(--fire)" opacity="0.7"/>
+      <path d="M28 16 L18 17.5 L20 16 L18 14.5 Z" fill="var(--ice)" opacity="0.7"/>
+      <circle cx="16" cy="16" r="2" fill="var(--fire)"/>
+    </svg>
+    <div class="header__title">СО<span class="sep">/</span>БУ<span class="sep">·</span><span class="loc">ИРКУТСК</span></div>
+  </a>
+  <nav class="header__nav" id="headerNav">
+    <a href="#manifesto" data-nav>Мероприятие</a>
+    <a href="#program" data-nav>Программа</a>
+    <a href="#org" data-nav>Оргкомитет</a>
+    <a href="#venue" data-nav>Место</a>
+    <a href="#travel" data-nav>Проезд</a>
+    <a href="#faq" data-nav>Вопросы</a>
+  </nav>
+  <a href="https://2gis.ru/irkutsk/geo/1548640652892514" target="_blank" rel="noopener" class="header__cta">Маршрут</a>
+  <button class="burger" id="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#manifesto" data-nav>Мероприятие</a>
+  <a href="#program" data-nav>Программа</a>
+  <a href="#org" data-nav>Оргкомитет</a>
+  <a href="#venue" data-nav>Место</a>
+  <a href="#travel" data-nav>Проезд</a>
+  <a href="#faq" data-nav>Вопросы</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="hero__canvas" id="heroCanvas"></div>
+  <div class="hero__bg-fallback"></div>
+  <div class="hero__static-logo" id="heroStaticLogo" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none">
+      <defs>
+        <linearGradient id="chromeGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f0f3f8"/>
+          <stop offset="50%" stop-color="#7a8090"/>
+          <stop offset="100%" stop-color="#d8dde6"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="90" stroke="url(#chromeGrad)" stroke-width="2" fill="none"/>
+      <circle cx="100" cy="100" r="78" fill="#0a0a0e"/>
+      <g fill="url(#chromeGrad)">
+        <path d="M100 30 L110 60 L100 55 L90 60 Z"/>
+        <path d="M100 170 L90 140 L100 145 L110 140 Z"/>
+        <path d="M30 100 L60 90 L55 100 L60 110 Z"/>
+        <path d="M170 100 L140 110 L145 100 L140 90 Z"/>
+        <path d="M100 70 L115 85 L130 100 L115 115 L100 130 L85 115 L70 100 L85 85 Z" opacity="0.6"/>
+        <circle cx="100" cy="100" r="6" fill="#FF5E2E"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Dark backdrop behind hero text for readability on the bright 3D logo -->
+  <div class="hero__text-backdrop"></div>
+  <!-- Yellow radial glow behind the 3D logo -->
+  <div class="hero__glow"></div>
+  <!-- Scan lines for cyberpunk feel -->
+  <div class="hero__scanlines"></div>
+
+  <!-- HUD -->
+  <div class="hud hud__tl">
+    <div class="lbl">LAT</div>
+    <div class="val"><span class="ice">52.2869</span>° N</div>
+    <div class="lbl" style="margin-top:8px">LON</div>
+    <div class="val"><span class="ice">104.3050</span>° E</div>
+  </div>
+  <div class="hud hud__tr">
+    <div class="lbl">STATUS</div>
+    <div class="val"><span class="ice">ОНЛАЙН</span> · СО/БУ</div>
+    <div class="lbl" style="margin-top:8px">EVENT</div>
+    <div class="val">АССАМБЛЕЯ <span class="fire">2026</span></div>
+  </div>
+  <div class="hud hud__bl">
+    <div class="lbl">ДАТА</div>
+    <div class="val">14<span class="fire">–</span>15.11.2026</div>
+    <div class="lbl" style="margin-top:8px">ЗАЛ БОЛЬШОЙ</div>
+    <div class="val">160 МЕСТ</div>
+  </div>
+  <div class="hud hud__br">
+    <div class="lbl">УЧАСТНИКИ</div>
+    <div class="val"><span class="fire" id="hudCounter">00</span> / 80</div>
+    <div class="lbl" style="margin-top:8px">ГОРОДОВ</div>
+    <div class="val"><span class="ice">11</span> РЕГИОН</div>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__tag"><span class="dot"></span> РЕГИОНАЛЬНАЯ АССАМБЛЕЯ · ИРКУТСК</div>
+    <h1 class="hero__h1" id="heroH1">
+      <span class="line"><span><span class="low">про</span><span class="bu">БУ</span><span class="low">ди</span></span></span>
+      <span class="line"><span><span class="so">СО</span><span class="low">знание</span></span></span>
+    </h1>
+    <p class="hero__sub">Ассамблея подкомитетов БУ и СО · 14–15 ноября 2026 · Иркутск, Учебный центр профсоюзов</p>
+    <div class="hero__readouts" id="heroReadouts">
+      <div class="hero__readout"><div class="val"><span class="ice" data-count="2">0</span></div><div class="lbl">ДНЯ</div></div>
+      <div class="hero__readout"><div class="val"><span class="fire" data-count="2">0</span></div><div class="lbl">ЗАЛА</div></div>
+      <div class="hero__readout"><div class="val"><span class="ice" data-count="11">0</span></div><div class="lbl">ГОРОДОВ</div></div>
+      <div class="hero__readout"><div class="val"><span class="fire" data-count="80" data-suffix="+">0</span></div><div class="lbl">УЧАСТНИКОВ</div></div>
+    </div>
+    <div class="hero__actions">
+      <a href="#program" class="btn btn--primary" data-magnetic>Программа <span>→</span></a>
+      <a href="https://2gis.ru/irkutsk/geo/1548640652892514" target="_blank" rel="noopener" class="btn btn--ghost" data-magnetic>Как добраться ↗</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>SCROLL</span>
+    <div class="scroll-cue__line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE
+     ============================================================ -->
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">АССАМБЛЕЯ СО/БУ <span class="dot">●</span> ИРКУТСК <span class="dot">●</span> 14–15 НОЯБРЯ 2026 <span class="dot">●</span> проБУди СОзнание <span class="dot">●</span> СЛУЖЕНИЕ <span class="dot">●</span> ЕДИНСТВО <span class="dot">●</span> ПРОБУЖДЕНИЕ <span class="dot">●</span></span>
+    <span class="marquee__item">АССАМБЛЕЯ СО/БУ <span class="dot">●</span> ИРКУТСК <span class="dot">●</span> 14–15 НОЯБРЯ 2026 <span class="dot">●</span> проБУди СОзнание <span class="dot">●</span> СЛУЖЕНИЕ <span class="dot">●</span> ЕДИНСТВО <span class="dot">●</span> ПРОБУЖДЕНИЕ <span class="dot">●</span></span>
+  </div>
+</section>
+
+<!-- ============================================================
+     MANIFESTO
+     ============================================================ -->
+<section class="section manifesto" id="manifesto">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="num">01 — О МЕРОПРИЯТИИ</span>
+      <div class="rule"></div>
+    </div>
+    <p class="manifesto__lede reveal" data-reveal>Два дня живой работы. Одиннадцать городов. Одна весть.</p>
+    <p data-words data-reveal>Ассамблея — это <span class="ice">два дня живой работы</span>: отчёты, выборы, обмен опытом и обучение служащих БУ и СО со всего региона.</p>
+    <p data-words data-reveal><span class="accent">БУ</span> несёт весть туда, где сознание ещё спит — в больницы и учреждения. <span class="ice">СО</span> пробуждает сознание общества, снимая стигму с зависимости.</p>
+    <p data-words data-reveal>Одиннадцать городов. Одна весть. Одно <span class="accent">пробуждение</span>.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAM
+     ============================================================ -->
+<section class="section program" id="program">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="num">02 — ПРОГРАММА</span>
+      <div class="rule"></div>
+    </div>
+
+    <div class="program__pin">
+      <div class="program__progress">
+        <div class="program__progress-track">
+          <div class="program__progress-fill" id="programProgress"></div>
+        </div>
+      </div>
+
+      <div class="program__steps" id="programSteps">
+        <article class="program__step" data-step>
+          <div class="program__step-num">ЭТАП 01 / 05</div>
+          <h3><span class="day">ДЕНЬ 01 — СУББОТА</span></h3>
+          <div class="body">
+            <ul>
+              <li>Заезд участников с пятницы 13.11</li>
+              <li>Регистрация и расселение</li>
+              <li>Торжественное открытие ассамблеи</li>
+            </ul>
+          </div>
+        </article>
+        <article class="program__step" data-step>
+          <div class="program__step-num">ЭТАП 02 / 05</div>
+          <h3><span class="day">ЗАЛЫ СО И БУ</span></h3>
+          <div class="body">
+            <ul>
+              <li>Параллельная работа: отчёты, выборы, обмен опытом</li>
+              <li>Кофе-брейки от оргкомитета</li>
+              <li>Зал большой — 160 мест · зал малый — 40 мест</li>
+            </ul>
+          </div>
+        </article>
+        <article class="program__step" data-step>
+          <div class="program__step-num">ЭТАП 03 / 05</div>
+          <h3><span class="day">БОЛЬШОЕ СОБРАНИЕ</span></h3>
+          <div class="body">
+            <ul>
+              <li>Вечернее открытое собрание для всех участников</li>
+              <li>Ведущие: Аня и Ксюша</li>
+            </ul>
+          </div>
+        </article>
+        <article class="program__step" data-step>
+          <div class="program__step-num">ЭТАП 04 / 05</div>
+          <h3><span class="day">ВЕЧЕР</span></h3>
+          <div class="body">
+            <ul>
+              <li>Баня, караоке, общение</li>
+              <li>Координаторы: Даня, Коля, Толя</li>
+            </ul>
+          </div>
+        </article>
+        <article class="program__step" data-step>
+          <div class="program__step-num">ЭТАП 05 / 05</div>
+          <h3><span class="day">ДЕНЬ 02 — ВОСКРЕСЕНЬЕ</span></h3>
+          <div class="body">
+            <ul>
+              <li>Утренняя «зорька»</li>
+              <li>Работа залов · Закрытие ассамблеи</li>
+              <li>Выезд до 12:00</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="program__note" data-reveal>ТОЧНЫЙ ТАЙМИНГ УТОЧНЯЕТСЯ ОРГКОМИТЕТОМ</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ORG COMMITTEE
+     ============================================================ -->
+<section class="section" id="org">
+  <div class="wrap" style="position:relative">
+    <div class="section-head" data-reveal>
+      <span class="num">03 — ОРГКОМИТЕТ</span>
+      <div class="rule"></div>
+    </div>
+    <p class="org__lede reveal" data-reveal>Сеть людей, которые держат эту ассамблею. Нажми на карточку — откроются контакты.</p>
+    <canvas id="orgCanvas"></canvas>
+    <div class="org__grid reveal-stagger" id="orgGrid">
+
+      <div class="org__card" data-org="evgenii" data-links="kolya,nikita,dan,kolya2" data-name="Женя" data-role="Координация · Ведущий рабочих собраний" data-bio="Главный координатор ассамблеи. Связывает все службы, ведёт рабочие собрания, держит процесс от старта до финала." data-tg="Evgenii777274" data-tg-url="https://t.me/Evgenii777274" data-phone="" data-tasks="Связь подкомитетов · Сценарий · Тайминг">
+        <div class="org__avatar">Е</div>
+        <div class="org__name">Женя</div>
+        <div class="org__role">Координация, ведущий рабочих собраний</div>
+        <div class="org__tg">@Evgenii777274</div>
+      </div>
+
+      <div class="org__card" data-org="kuzma" data-links="" data-name="Кузьма" data-role="Казначей" data-bio="Отвечает за бюджет ассамблеи, сбор взносов, оплату площадки, питания и трансфера. Прозрачные отчёты." data-tg="" data-tg-url="" data-phone="" data-tasks="Бюджет · Отчёты · Смета">
+        <div class="org__avatar">К</div>
+        <div class="org__name">Кузьма</div>
+        <div class="org__role">Казначей</div>
+        <div class="org__tg">—</div>
+      </div>
+
+      <div class="org__card" data-org="varya" data-links="masha,anastya" data-name="Варя" data-role="Секретарь" data-bio="Протоколы собраний, рассылка решений, документооборот. Всё, что сказано — зафиксировано." data-tg="ggugelbugell" data-tg-url="https://t.me/ggugelbugell" data-phone="" data-tasks="Протоколы · Рассылки · Архив">
+        <div class="org__avatar">В</div>
+        <div class="org__name">Варя</div>
+        <div class="org__role">Секретарь</div>
+        <div class="org__tg">@ggugelbugell</div>
+      </div>
+
+      <div class="org__card" data-org="snezhana" data-links="pavel,lyubov" data-name="Снежана" data-role="Дизайнер" data-bio="Визуал ассамблеи: баннеры, презентации, оформление зала, печатная продукция, мерч." data-tg="Yoursad69" data-tg-url="https://t.me/Yoursad69" data-phone="" data-tasks="Баннеры · Полиграфия · Мерч">
+        <div class="org__avatar">С</div>
+        <div class="org__name">Снежана</div>
+        <div class="org__role">Дизайнер</div>
+        <div class="org__tg">@Yoursad69</div>
+      </div>
+
+      <div class="org__card" data-org="pavel" data-links="snezhana,lyubov" data-name="Паша" data-role="Дизайн и пиар" data-bio="Дизайн + пиар. Ведёт соцсети, делает анонсы, продвигает ассамблею в медиа и каналах." data-tg="TGsalesPavel" data-tg-url="https://t.me/TGsalesPavel" data-phone="" data-tasks="SMM · Анонсы · Партнёры">
+        <div class="org__avatar">П</div>
+        <div class="org__name">Паша</div>
+        <div class="org__role">Дизайн и пиар</div>
+        <div class="org__tg">@TGsalesPavel</div>
+      </div>
+
+      <div class="org__card" data-org="sasha" data-links="anuta,anna,ksenia" data-name="Саша и Аня" data-role="Расселение" data-bio="Встречают участников, распределяют по комнатам, решают бытовые вопросы на месте. Бронирование через них." data-tg="dozanarkoza111" data-tg-url="https://t.me/dozanarkoza111" data-phone="" data-tasks="Бронь · Заселение · Быт">
+        <div class="org__avatar">СА</div>
+        <div class="org__name">Саша и Аня</div>
+        <div class="org__role">Расселение</div>
+        <div class="org__tg">@dozanarkoza111</div>
+      </div>
+
+      <div class="org__card" data-org="lena1" data-links="zhanna,lyubov" data-name="Лена и Жанна" data-role="Питание" data-bio="Организуют завтраки, обеды, ужины и кофе-брейки. Договор со столовой, меню, контроль порций." data-tg="" data-tg-url="" data-phone="" data-tasks="Меню · Договор · Кейтеринг">
+        <div class="org__avatar">ЛЕ</div>
+        <div class="org__name">Лена и Жанна</div>
+        <div class="org__role">Питание</div>
+        <div class="org__tg">—</div>
+      </div>
+
+      <div class="org__card" data-org="danya" data-links="kolya2,tolya,ylia" data-name="Даня, Коля, Толя" data-role="Развлечения" data-bio="Баня, караоке, вечерние программы. Всё, что даёт заряд и объединяет после собраний." data-tg="" data-tg-url="" data-phone="" data-tasks="Баня · Караоке · Вечер">
+        <div class="org__avatar">ДА</div>
+        <div class="org__name">Даня, Коля, Толя</div>
+        <div class="org__role">Развлечения (баня, караоке)</div>
+        <div class="org__tg">—</div>
+      </div>
+
+      <div class="org__card" data-org="lyubov" data-links="lena1,snezhana,pavel" data-name="Лена и Люба" data-role="Сувенирка" data-bio="Печать мерча, раздаточные материалы, значки, браслеты, пакеты участника." data-tg="LuboveS" data-tg-url="https://t.me/LuboveS" data-phone="" data-tasks="Мерч · Раздатка · Упаковка">
+        <div class="org__avatar">ЛЮ</div>
+        <div class="org__name">Лена и Люба</div>
+        <div class="org__role">Сувенирка</div>
+        <div class="org__tg">@LuboveS</div>
+      </div>
+
+      <div class="org__card" data-org="masha" data-links="anastya,varya" data-name="Маша и Настя" data-role="Регистрация" data-bio="Встречают на входе, выдают бейджи и пакеты, ведут список участников, фиксируют посещаемость." data-tg="mariairkutsk" data-tg-url="https://t.me/mariairkutsk" data-phone="" data-tasks="Регистрация · Бейджи · Списки">
+        <div class="org__avatar">МА</div>
+        <div class="org__name">Маша и Настя</div>
+        <div class="org__role">Регистрация</div>
+        <div class="org__tg">@mariairkutsk</div>
+      </div>
+
+      <div class="org__card" data-org="kolya" data-links="evgenii,nikita" data-name="Коля и Никита" data-role="Трансфер" data-bio="Встречают в аэропорту и на вокзале, развозят до места, обратные рейсы. Главные по логистике." data-tg="" data-tg-url="" data-phone="" data-tasks="Аэропорт · Вокзал · Маршруты">
+        <div class="org__avatar">КН</div>
+        <div class="org__name">Коля и Никита</div>
+        <div class="org__role">Трансфер</div>
+        <div class="org__tg">—</div>
+      </div>
+
+      <div class="org__card" data-org="anna" data-links="ksenia,sasha" data-name="Аня и Ксюша" data-role="Ведущие собраний" data-bio="Ведущие зорьки и большого собрания. Голос, темп, настрой — от них зависит атмосфера зала." data-tg="Xsenia666" data-tg-url="https://t.me/Xsenia666" data-phone="" data-tasks="Ведение · Зорька · Собрание">
+        <div class="org__avatar">АН</div>
+        <div class="org__name">Аня и Ксюша</div>
+        <div class="org__role">Ведущие зорьки и большого собрания</div>
+        <div class="org__tg">@Xsenia666</div>
+      </div>
+
+      <div class="org__card" data-org="ylia" data-links="danya" data-name="Юля, Даня, Коля" data-role="Кофе-брейки" data-bio="Держат кофе-брейки между блоками: кофе, чай, печенье, фрукты. Пауза с ними — в радость." data-tg="yliazork_nails" data-tg-url="https://t.me/yliazork_nails" data-phone="" data-tasks="Кофе · Чай · Перекус">
+        <div class="org__avatar">ЮЛ</div>
+        <div class="org__name">Юля, Даня, Коля</div>
+        <div class="org__role">Кофе-брейки</div>
+        <div class="org__tg">@yliazork_nails</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VENUE
+     ============================================================ -->
+<section class="section" id="venue">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="num">04 — МЕСТО</span>
+      <div class="rule"></div>
+    </div>
+    <div class="split">
+      <div class="venue__map reveal" data-reveal>
+        <iframe src="https://yandex.ru/map-widget/v1/?ll=104.3050%2C52.2869&z=14&pt=104.3050,52.2869,pm2gnm" loading="lazy" title="Карта"></iframe>
+      </div>
+      <div class="venue__facts">
+        <div class="venue__fact" data-reveal>
+          <div class="k">ЗАЛ БОЛЬШОЙ</div>
+          <div class="v">160 мест</div>
+        </div>
+        <div class="venue__fact" data-reveal>
+          <div class="k">ЗАЛ МАЛЫЙ</div>
+          <div class="v">40 мест</div>
+        </div>
+        <div class="venue__fact" data-reveal>
+          <div class="k">ПРОЖИВАНИЕ</div>
+          <div class="v">от 1 700 ₽ / сутки</div>
+        </div>
+        <div class="venue__fact" data-reveal>
+          <div class="k">ПИТАНИЕ</div>
+          <div class="v">столовая на территории</div>
+        </div>
+        <div class="venue__fact" data-reveal>
+          <div class="k">ЛОГИСТИКА</div>
+          <div class="v">аэропорт / ж/д вокзал</div>
+        </div>
+        <div class="venue__fact" data-reveal>
+          <div class="k">АДРЕС</div>
+          <div class="v">Иркутск, мкр. Солнечный</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px">
+      <a href="https://2gis.ru/irkutsk/geo/1548640652892514" target="_blank" rel="noopener" class="btn btn--primary" data-magnetic>Построить маршрут ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRAVEL
+     ============================================================ -->
+<section class="section" id="travel">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="num">05 — ПРОЕЗД</span>
+      <div class="rule"></div>
+    </div>
+    <div class="travel__grid reveal-stagger" id="travelGrid">
+      <div class="travel__card"><div class="travel__city">Улан-Удэ</div><div class="travel__price"><span data-count="4400">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Красноярск</div><div class="travel__price"><span data-count="6560">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Чита</div><div class="travel__price"><span data-count="7320">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Томск</div><div class="travel__price"><span data-count="9560">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Новосибирск</div><div class="travel__price"><span data-count="9560">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Новокузнецк</div><div class="travel__price"><span data-count="10056">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Барнаул</div><div class="travel__price"><span data-count="10400">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+      <div class="travel__card"><div class="travel__city">Омск</div><div class="travel__price"><span data-count="12400">0</span><span class="cur">₽</span></div><div class="travel__sub">Ж/Д · ПЛАЦКАРТ</div></div>
+    </div>
+    <p class="travel__note" data-reveal>Трансфер от вокзала и аэропорта — координатор <strong>Коля</strong>.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="num">06 — ВОПРОСЫ</span>
+      <div class="rule"></div>
+    </div>
+    <div class="faq__list">
+      <div class="faq__item">
+        <button class="faq__q">Что такое ассамблея СО/БУ?<span class="faq__icon">+</span></button>
+        <div class="faq__a"><div class="faq__a-inner">Региональное рабочее собрание служащих подкомитетов «Больницы и Учреждения» и «Связь с Общественностью»: отчёты, выборы, обмен опытом, обучение и единство.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q">Кто может участвовать?<span class="faq__icon">+</span></button>
+        <div class="faq__a"><div class="faq__a-inner">Все желающие служить и гости сообщества из любого города региона.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q">Где жить?<span class="faq__icon">+</span></button>
+        <div class="faq__a"><div class="faq__a-inner">В гостинице при центре, от 1 700 ₽/сутки за койко-место; бронирование через координаторов по расселению (Саша и Аня).</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q">Что с питанием?<span class="faq__icon">+</span></button>
+        <div class="faq__a"><div class="faq__a-inner">Столовая на территории, комплексные обеды и ужины + кофе-брейки от оргкомитета.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q">Сколько стоит участие?<span class="faq__icon">+</span></button>
+        <div class="faq__a"><div class="faq__a-inner">Стоимость рег-пакета уточняется оргкомитетом. В пакет входят: трансфер, кофе-брейки, рег-пакет участника, сувенирная продукция.</div></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q">Как добраться?<span class="faq__icon">+</span></button>
+        <div class="faq__a"><div class="faq__a-inner">Иркутск, мкр. Солнечный, Учебный центр профсоюзов. Трансфер от вокзала и аэропорта организует оргкомитет — координатор Коля.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="cta-final__h2" data-reveal>про<span class="bu">БУ</span>ди <span class="so">СО</span>знание.</h2>
+    <p class="cta-final__sub" data-reveal>14–15 ноября · Иркутск · Учебный центр профсоюзов</p>
+    <div data-reveal>
+      <a href="https://2gis.ru/irkutsk/geo/1548640652892514" target="_blank" rel="noopener" class="btn btn--primary btn--big" data-magnetic>Построить маршрут ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer__outline" data-parallax="0.2">проБУди СОзнание</div>
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__col footer__brand">
+        <div class="name">Ассамблея СО/БУ</div>
+        <div class="url">NA-BAYKAL-IRK.RU</div>
+      </div>
+      <div class="footer__col">
+        <h4>Навигация</h4>
+        <a href="#manifesto">Мероприятие</a>
+        <a href="#program">Программа</a>
+        <a href="#org">Оргкомитет</a>
+        <a href="#venue">Место</a>
+        <a href="#travel">Проезд</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div class="footer__col">
+        <h4>Координаторы</h4>
+        <a href="https://t.me/Evgenii777274" target="_blank" rel="noopener">@Evgenii777274</a>
+        <a href="https://t.me/ggugelbugell" target="_blank" rel="noopener">@ggugelbugell</a>
+        <a href="https://t.me/Yoursad69" target="_blank" rel="noopener">@Yoursad69</a>
+        <a href="https://t.me/TGsalesPavel" target="_blank" rel="noopener">@TGsalesPavel</a>
+      </div>
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <a href="https://t.me/mariairkutsk" target="_blank" rel="noopener">Регистрация</a>
+        <a href="https://t.me/dozanarkoza111" target="_blank" rel="noopener">Расселение</a>
+        <a href="https://t.me/Xsenia666" target="_blank" rel="noopener">Ведущие</a>
+        <a href="https://2gis.ru/irkutsk/geo/1548640652892514" target="_blank" rel="noopener">Маршрут ↗</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 · АССАМБЛЕЯ СО/БУ · ИРКУТСК</div>
+      <div>проБУди СОзнание</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     ORG MODAL
+     ============================================================ -->
+<div class="org-modal" id="orgModal" aria-hidden="true">
+  <div class="org-modal__backdrop" data-modal-close></div>
+  <div class="org-modal__panel" role="dialog" aria-modal="true" aria-labelledby="orgModalName">
+    <button class="org-modal__close" data-modal-close aria-label="Закрыть">×</button>
+    <div class="org-modal__head">
+      <div class="org-modal__avatar" id="orgModalAvatar"></div>
+      <div>
+        <div class="org-modal__role" id="orgModalRole"></div>
+        <h3 class="org-modal__name" id="orgModalName"></h3>
+      </div>
+    </div>
+    <p class="org-modal__bio" id="orgModalBio"></p>
+    <div class="org-modal__tasks" id="orgModalTasks"></div>
+    <div class="org-modal__contacts">
+      <a class="org-modal__contact org-modal__contact--tg" id="orgModalTg" href="#" target="_blank" rel="noopener" hidden>
+        <span class="org-modal__contact-k">Telegram</span>
+        <span class="org-modal__contact-v" id="orgModalTgV"></span>
+      </a>
+      <a class="org-modal__contact org-modal__contact--phone" id="orgModalPhone" href="#" hidden>
+        <span class="org-modal__contact-k">Телефон</span>
+        <span class="org-modal__contact-v" id="orgModalPhoneV"></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     THREE.JS IMPORT MAP
+     ============================================================ -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<!-- ============================================================
+     GSAP + LENIS
+     ============================================================ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<!-- ============================================================
+     MAIN SCRIPT
+     ============================================================ -->
+<script>
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+(function() {
+  const preloader = document.getElementById('preloader');
+  const title = document.getElementById('preloaderTitle');
+  const bar = document.getElementById('preloaderBar');
+  const pct = document.getElementById('preloaderPct');
+  const status = document.getElementById('preloaderStatus');
+  const spans = title.querySelectorAll('span');
+
+  const statuses = ['ЗАГРУЗКА ЯДРА', 'ПРОБУЖДЕНИЕ', 'ГОТОВО'];
+  let progress = 0;
+  let fill = null;
+
+  // Create the fill element once
+  fill = document.createElement('div');
+  fill.style.cssText = 'position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,#FF5E2E,#21E6FF);transition:width 0.3s linear';
+  bar.appendChild(fill);
+
+  // Reveal letters
+  spans.forEach((s, i) => {
+    setTimeout(() => s.classList.add('in'), 80 * i);
+  });
+
+  function tick() {
+    if (progress < 100) {
+      progress += Math.random() * 3 + 1;
+      if (progress > 100) progress = 100;
+      const p = Math.floor(progress);
+      pct.textContent = p + '%';
+      fill.style.width = p + '%';
+      if (p < 30) status.textContent = statuses[0];
+      else if (p < 85) status.textContent = statuses[1];
+      else status.textContent = statuses[2];
+      setTimeout(tick, 40);
+    } else {
+      setTimeout(() => {
+        preloader.classList.add('done');
+        setTimeout(() => preloader.style.display = 'none', 800);
+        document.body.classList.add('loaded');
+        window.dispatchEvent(new Event('preloaderDone'));
+      }, 400);
+    }
+  }
+  setTimeout(tick, 400);
+})();
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+(function() {
+  if (window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches) return;
+
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let rx = mx, ry = my;
+  let raf;
+
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+  });
+
+  function loop() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+    raf = requestAnimationFrame(loop);
+  }
+  loop();
+
+  document.querySelectorAll('a, button, [data-magnetic], .org__card, .faq__q').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('expand'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+  });
+})();
+
+/* ============================================================
+   HERO H1 REVEAL
+   ============================================================ */
+(function() {
+  const h1 = document.getElementById('heroH1');
+  if (!h1) return;
+  setTimeout(() => h1.classList.add('in'), 600);
+})();
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+(function() {
+  const bar = document.getElementById('scrollProgress');
+  function update() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = h > 0 ? window.scrollY / h : 0;
+    bar.style.transform = `scaleX(${p})`;
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ============================================================
+   HEADER SCROLL
+   ============================================================ */
+(function() {
+  const header = document.getElementById('header');
+  function update() {
+    if (window.scrollY > 40) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ============================================================
+   BURGER + MOBILE MENU
+   ============================================================ */
+(function() {
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      burger.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+})();
+
+/* ============================================================
+   COUNT-UP
+   ============================================================ */
+function countUp(el, target, duration = 1500, suffix = '') {
+  const start = performance.now();
+  const fmt = (n) => {
+    const v = Math.floor(n);
+    return v.toLocaleString('ru-RU') + suffix;
+  };
+  function step(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = fmt(target * eased);
+    if (t < 1) requestAnimationFrame(step);
+    else el.textContent = fmt(target);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ============================================================
+   REVEAL ON SCROLL (using IntersectionObserver)
+   ============================================================ */
+(function() {
+  const reveals = document.querySelectorAll('[data-reveal], .reveal, .reveal-stagger, .section-head');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.01, rootMargin: '0px 0px 0px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  // Fallback: force-reveal anything still hidden after 3s (in case observer missed)
+  setTimeout(() => {
+    document.querySelectorAll('.reveal-stagger:not(.in), [data-reveal]:not(.in), .reveal:not(.in)').forEach(el => {
+      el.classList.add('in');
+    });
+  }, 3000);
+})();
+
+/* ============================================================
+   HERO READOUTS COUNT-UP
+   ============================================================ */
+(function() {
+  const els = document.querySelectorAll('#heroReadouts [data-count]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        els.forEach(el => {
+          const t = parseInt(el.dataset.count, 10);
+          const sfx = el.dataset.suffix || '';
+          countUp(el, t, 1400, sfx);
+        });
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  io.observe(document.getElementById('heroReadouts'));
+})();
+
+/* ============================================================
+   TRAVEL COUNT-UP
+   ============================================================ */
+(function() {
+  const cards = document.querySelectorAll('.travel__card [data-count]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const card = e.target.closest('.travel__card');
+        const el = e.target;
+        const t = parseInt(el.dataset.count, 10);
+        countUp(el, t, 1600);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  cards.forEach(c => io.observe(c));
+})();
+
+/* ============================================================
+   MANIFESTO WORD REVEAL
+   ============================================================ */
+(function() {
+  document.querySelectorAll('[data-words]').forEach(p => {
+    const text = p.innerHTML;
+    // Wrap each word in span.word while preserving HTML tags (innerHTML)
+    // Simple approach: split on spaces, but we need to preserve <span> tags
+    // We'll do a node-walk instead
+    const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT, null, false);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const parts = n.nodeValue.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      parts.forEach(part => {
+        if (/^\s+$/.test(part)) {
+          frag.appendChild(document.createTextNode(part));
+        } else if (part.length) {
+          const s = document.createElement('span');
+          s.className = 'word';
+          s.textContent = part;
+          frag.appendChild(s);
+        }
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+  });
+
+  // Reveal words when in view
+  const words = document.querySelectorAll('[data-words]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const ws = e.target.querySelectorAll('.word');
+        ws.forEach((w, i) => {
+          setTimeout(() => w.classList.add('in'), i * 18);
+        });
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  words.forEach(w => io.observe(w));
+})();
+
+/* ============================================================
+   FAQ ACCORDION
+   ============================================================ */
+(function() {
+  document.querySelectorAll('.faq__q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const a = item.querySelector('.faq__a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item.open').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.faq__a').style.maxHeight = '0';
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        a.style.maxHeight = '0';
+      } else {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+
+/* ============================================================
+   MAGNETIC BUTTONS
+   ============================================================ */
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  document.querySelectorAll('[data-magnetic]').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+})();
+
+/* ============================================================
+   PROGRAM PINNED (steps + progress)
+   ============================================================ */
+(function() {
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    document.querySelectorAll('[data-step]').forEach(s => s.classList.add('active'));
+    return;
+  }
+  const section = document.getElementById('program');
+  if (!section) return;
+  const steps = Array.from(section.querySelectorAll('[data-step]'));
+  const fill = document.getElementById('programProgress');
+
+  function update() {
+    const vh = window.innerHeight;
+    const center = vh * 0.4; // activation line at 40% from top
+    let activeIdx = 0;
+    let bestDist = Infinity;
+    steps.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      const sCenter = r.top + r.height / 2;
+      const dist = Math.abs(sCenter - center);
+      if (dist < bestDist) { bestDist = dist; activeIdx = i; }
+    });
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === activeIdx);
+    });
+
+    // Progress fill: based on section scroll position
+    const sec = section.getBoundingClientRect();
+    const total = steps.length;
+    const raw = (vh - sec.top) / Math.max(1, sec.height);
+    const progress = Math.max(0, Math.min(1, raw));
+    if (fill) fill.style.height = (progress * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ============================================================
+   ORG COMMITTEE NETWORK LINES
+   ============================================================ */
+(function() {
+  const canvas = document.getElementById('orgCanvas');
+  const grid = document.getElementById('orgGrid');
+  if (!canvas || !grid) return;
+  const ctx = canvas.getContext('2d');
+  let hovered = null;
+
+  function resize() {
+    const r = grid.getBoundingClientRect();
+    canvas.width = r.width * window.devicePixelRatio;
+    canvas.height = r.height * window.devicePixelRatio;
+    canvas.style.width = r.width + 'px';
+    canvas.style.height = r.height + 'px';
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); });
+
+  document.querySelectorAll('.org__card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      hovered = card;
+      const links = (card.dataset.links || '').split(',').filter(Boolean);
+      document.querySelectorAll('.org__card').forEach(c => {
+        const id = c.dataset.org;
+        if (c === card || links.includes(id)) c.classList.remove('dim');
+        else c.classList.add('dim');
+      });
+      card.classList.add('hovered');
+    });
+    card.addEventListener('mouseleave', () => {
+      hovered = null;
+      document.querySelectorAll('.org__card').forEach(c => {
+        c.classList.remove('dim');
+        c.classList.remove('hovered');
+      });
+    });
+  });
+
+  function getCenter(el) {
+    const r = el.getBoundingClientRect();
+    const parentR = grid.getBoundingClientRect();
+    return { x: r.left + r.width / 2 - parentR.left, y: r.top + r.height / 2 - parentR.top };
+  }
+
+  let phase = 0;
+  function draw() {
+    phase += 0.03;
+    const r = grid.getBoundingClientRect();
+    ctx.clearRect(0, 0, r.width, r.height);
+    if (!hovered) { requestAnimationFrame(draw); return; }
+    const a = getCenter(hovered);
+    const links = (hovered.dataset.links || '').split(',').filter(Boolean);
+    document.querySelectorAll('.org__card').forEach(c => {
+      if (c === hovered) return;
+      if (!links.includes(c.dataset.org)) return;
+      const b = getCenter(c);
+      const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+      grad.addColorStop(0, 'rgba(33, 230, 255, 0.9)');
+      grad.addColorStop(1, 'rgba(33, 230, 255, 0.4)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+      // Pulse dot
+      const t = (Math.sin(phase) + 1) / 2;
+      const px = a.x + (b.x - a.x) * t;
+      const py = a.y + (b.y - a.y) * t;
+      ctx.fillStyle = '#21E6FF';
+      ctx.shadowColor = '#21E6FF';
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(px, py, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+    requestAnimationFrame(draw);
+  }
+  if (window.matchMedia('(min-width: 1000px)').matches) {
+    draw();
+  }
+})();
+
+/* ============================================================
+   ORG MODAL — open on card click
+   ============================================================ */
+(function() {
+  const modal = document.getElementById('orgModal');
+  if (!modal) return;
+  const elAvatar = document.getElementById('orgModalAvatar');
+  const elRole = document.getElementById('orgModalRole');
+  const elName = document.getElementById('orgModalName');
+  const elBio = document.getElementById('orgModalBio');
+  const elTasks = document.getElementById('orgModalTasks');
+  const elTg = document.getElementById('orgModalTg');
+  const elTgV = document.getElementById('orgModalTgV');
+  const elPhone = document.getElementById('orgModalPhone');
+  const elPhoneV = document.getElementById('orgModalPhoneV');
+
+  function openModal(card) {
+    const d = card.dataset;
+    const avatar = card.querySelector('.org__avatar');
+    elAvatar.textContent = avatar ? avatar.textContent : '';
+    elRole.textContent = d.role || '';
+    elName.textContent = d.name || '';
+    elBio.textContent = d.bio || '';
+    elTasks.textContent = d.tasks ? 'Задачи: ' + d.tasks : '';
+
+    if (d.tg && d.tgUrl) {
+      elTg.href = d.tgUrl;
+      elTgV.textContent = '@' + d.tg;
+      elTg.hidden = false;
+    } else {
+      elTg.hidden = true;
+    }
+
+    if (d.phone && d.phone.replace(/\D/g, '').length >= 6) {
+      elPhone.href = 'tel:' + d.phone.replace(/[^\d+]/g, '');
+      elPhoneV.textContent = d.phone;
+      elPhone.hidden = false;
+    } else {
+      elPhone.hidden = true;
+    }
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.org__card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't open modal when clicking the inner telegram link
+      if (e.target.closest('a')) return;
+      openModal(card);
+    });
+  });
+
+  modal.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+})();
+
+/* ============================================================
+   ACTIVE NAV LINK ON SCROLL
+   ============================================================ */
+(function() {
+  const sections = ['manifesto','program','org','venue','travel','faq'].map(id => document.getElementById(id));
+  const links = document.querySelectorAll('[data-nav]');
+  function update() {
+    const y = window.scrollY + 120;
+    let active = '';
+    sections.forEach(s => { if (s && s.offsetTop <= y) active = s.id; });
+    links.forEach(l => {
+      const href = l.getAttribute('href');
+      if (href === '#' + active) l.classList.add('active');
+      else l.classList.remove('active');
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ============================================================
+   PARALLAX FOOTER OUTLINE
+   ============================================================ */
+(function() {
+  const el = document.querySelector('[data-parallax]');
+  if (!el) return;
+  function update() {
+    const r = el.getBoundingClientRect();
+    const speed = parseFloat(el.dataset.parallax);
+    const offset = (window.innerHeight - r.top) * speed;
+    el.style.transform = `translateY(${offset}px)`;
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ============================================================
+   LENIS SMOOTH SCROLL
+   ============================================================ */
+let lenis;
+function initLenis() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  lenis = new Lenis({
+    duration: 1.1,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  // Anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href.length > 1 && document.querySelector(href)) {
+        e.preventDefault();
+        lenis.scrollTo(href, { offset: -80 });
+      }
+    });
+  });
+}
+window.addEventListener('preloaderDone', initLenis);
+</script>
+
+<!-- ============================================================
+     3D HERO LOGO (Three.js)
+     ============================================================ -->
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+
+/* ---------- Detect capability ---------- */
+function canRun3D() {
+  try {
+    const c = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')));
+  } catch (e) { return false; }
+}
+const isMobile = window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
+const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!canRun3D() || isMobile) {
+  document.body.classList.add('no-3d');
+  // continue but the 3D section will be hidden, static logo shown
+  throw new Error('no-3d');
+}
+if (prefersReduce) {
+  document.body.classList.add('no-3d');
+  throw new Error('reduced-motion');
+}
+
+/* ---------- Scene ---------- */
+const container = document.getElementById('heroCanvas');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setClearColor(0x000000, 0);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+container.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100);
+camera.position.set(0, 0, 5.6);
+
+/* ---------- Environment (IBL) ---------- */
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+/* ---------- Lights ---------- */
+const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
+keyLight.position.set(4, 5, 6);
+scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0x21e6ff, 1.0);
+fillLight.position.set(-5, 2, 3);
+scene.add(fillLight);
+const rimLight = new THREE.DirectionalLight(0xff5e2e, 1.2);
+rimLight.position.set(0, -3, -5);
+scene.add(rimLight);
+const pointLight = new THREE.PointLight(0xffffff, 1.5, 10, 2);
+pointLight.position.set(0, 0, 3);
+scene.add(pointLight);
+const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+scene.add(ambient);
+
+/* ---------- Materials ---------- */
+const chromeMat = new THREE.MeshStandardMaterial({
+  color: 0xffe600,
+  metalness: 0.95,
+  roughness: 0.15,
+  envMapIntensity: 1.6,
+  emissive: 0x332200,
+  emissiveIntensity: 0.15
+});
+const chromeMatLight = new THREE.MeshStandardMaterial({
+  color: 0xfff4a0,
+  metalness: 0.92,
+  roughness: 0.12,
+  envMapIntensity: 1.8,
+  emissive: 0x443300,
+  emissiveIntensity: 0.2
+});
+const darkMetalMat = new THREE.MeshStandardMaterial({
+  color: 0x0a0a0e,
+  metalness: 0.8,
+  roughness: 0.3,
+  envMapIntensity: 1.0
+});
+const accentMat = new THREE.MeshStandardMaterial({
+  color: 0xffea00,
+  metalness: 0.6,
+  roughness: 0.2,
+  emissive: 0xffea00,
+  emissiveIntensity: 0.6,
+  envMapIntensity: 1.4
+});
+const iceMat = new THREE.MeshStandardMaterial({
+  color: 0x00f0ff,
+  metalness: 0.5,
+  roughness: 0.2,
+  emissive: 0x00f0ff,
+  emissiveIntensity: 0.5,
+  envMapIntensity: 1.4
+});
+
+/* ---------- Logo group ---------- */
+const logoGroup = new THREE.Group();
+logoGroup.scale.setScalar(2.4);
+scene.add(logoGroup);
+
+/* Outer ring (yellow chrome torus) */
+const ringGeo = new THREE.TorusGeometry(1.85, 0.085, 32, 160);
+const ring = new THREE.Mesh(ringGeo, chromeMat);
+logoGroup.add(ring);
+
+/* Outer accent ring (thinner, ice cyan) */
+const ringAccentGeo = new THREE.TorusGeometry(1.85, 0.014, 16, 160);
+const ringAccent = new THREE.Mesh(ringAccentGeo, iceMat);
+logoGroup.add(ringAccent);
+
+/* Inner ring (thinner) */
+const innerRingGeo = new THREE.TorusGeometry(1.62, 0.025, 16, 128);
+const innerRing = new THREE.Mesh(innerRingGeo, chromeMatLight);
+logoGroup.add(innerRing);
+
+/* Central dark plate */
+const plateGeo = new THREE.CylinderGeometry(1.58, 1.58, 0.07, 64);
+const plate = new THREE.Mesh(plateGeo, darkMetalMat);
+plate.rotation.x = Math.PI / 2;
+logoGroup.add(plate);
+
+/* N/A letters — custom Shape-based N and A, with gold outline.
+   Each letter is a separate mesh, no overlap, fills inner ring diameter. */
+function makeNShape(w, h) {
+  // N built as a 3w x h rectangle with two triangular holes
+  const s = new THREE.Shape();
+  s.moveTo(0, 0);
+  s.lineTo(3 * w, 0);
+  s.lineTo(3 * w, h);
+  s.lineTo(0, h);
+  s.closePath();
+  // Upper-right triangle hole (between diagonal and right pillar top)
+  const h1 = new THREE.Path();
+  h1.moveTo(w, h);
+  h1.lineTo(2 * w, h);
+  h1.lineTo(2 * w, h * 0.5);
+  h1.closePath();
+  s.holes.push(h1);
+  // Lower-left triangle hole (between diagonal and left pillar bottom)
+  const h2 = new THREE.Path();
+  h2.moveTo(w, 0);
+  h2.lineTo(2 * w, 0);
+  h2.lineTo(w, h * 0.5);
+  h2.closePath();
+  s.holes.push(h2);
+  return s;
+}
+
+function makeAShape(w, h) {
+  // A built as a triangle with an inner triangle hole (creates pillars + crossbar)
+  const s = new THREE.Shape();
+  s.moveTo(0, 0);
+  s.lineTo(2 * w, 0);
+  s.lineTo(1.5 * w, h);
+  s.lineTo(0.5 * w, h);
+  s.closePath();
+  // Inner triangle: left side along (0,0)→(0.5w,h), right side along (2w,0)→(1.5w,h)
+  // At y=0.2h, x_left = 0.1w, x_right = 1.9w
+  // At y=0.72h, x_left = 0.36w, x_right = 1.64w
+  const h1 = new THREE.Path();
+  h1.moveTo(0.12 * w, 0.2 * h);
+  h1.lineTo(1.88 * w, 0.2 * h);
+  h1.lineTo(1.62 * w, 0.72 * h);
+  h1.lineTo(0.38 * w, 0.72 * h);
+  h1.closePath();
+  s.holes.push(h1);
+  return s;
+}
+
+// Letter dimensions (in 3D units, before logoGroup scale 2.4)
+const N_W = 0.46, N_H = 1.7;          // N: pillar width, height
+const A_W = 0.6, A_H = 1.7;            // A: base width, height
+const GAP = 0.4;                         // space between N and A
+const LETTER_DEPTH = 0.5;               // extrusion depth (Z)
+const BEVEL = 0.03;
+
+const letterMat = new THREE.MeshStandardMaterial({
+  color: 0xfff4a0,
+  metalness: 0.95,
+  roughness: 0.18,
+  envMapIntensity: 1.6,
+  emissive: 0x2a1f04,
+  emissiveIntensity: 0.5
+});
+const letterOutlineMat = new THREE.MeshStandardMaterial({
+  color: 0xD4AF37,
+  metalness: 0.9,
+  roughness: 0.25,
+  envMapIntensity: 1.4,
+  emissive: 0x3a2a08,
+  emissiveIntensity: 0.45
+});
+
+// Build N
+const nShape = makeNShape(N_W, N_H);
+const nGeo = new THREE.ExtrudeGeometry(nShape, {
+  depth: LETTER_DEPTH,
+  bevelEnabled: true,
+  bevelThickness: BEVEL,
+  bevelSize: BEVEL,
+  bevelSegments: 4,
+  curveSegments: 1
+});
+nGeo.translate(0, 0, 0);
+// Center each letter vertically around y=0
+const nBounds = new THREE.Box3().setFromObject(new THREE.Mesh(nGeo));
+const nCenterY = (nBounds.max.y + nBounds.min.y) / 2;
+nGeo.translate(0, -nCenterY, 0);
+// X: total N width = 3*N_W = 1.26, place centered
+const nWidth = 3 * N_W;
+nGeo.translate(-nWidth / 2, 0, 0);
+
+const nMesh = new THREE.Mesh(nGeo, letterMat);
+logoGroup.add(nMesh);
+// Outline N (slightly larger, behind)
+const nOutlineGeo = new THREE.ExtrudeGeometry(nShape, {
+  depth: LETTER_DEPTH + 0.12,
+  bevelEnabled: true,
+  bevelThickness: BEVEL + 0.02,
+  bevelSize: BEVEL + 0.02,
+  bevelSegments: 4,
+  curveSegments: 1
+});
+const nOBounds = new THREE.Box3().setFromObject(new THREE.Mesh(nOutlineGeo));
+const nOCenterY = (nOBounds.max.y + nOBounds.min.y) / 2;
+nOutlineGeo.translate(0, -nOCenterY, 0);
+nOutlineGeo.translate(-nWidth / 2, 0, 0);
+const nOutline = new THREE.Mesh(nOutlineGeo, letterOutlineMat);
+nOutline.position.z = -0.08;
+logoGroup.add(nOutline);
+
+// Build A
+const aShape = makeAShape(A_W, A_H);
+const aGeo = new THREE.ExtrudeGeometry(aShape, {
+  depth: LETTER_DEPTH,
+  bevelEnabled: true,
+  bevelThickness: BEVEL,
+  bevelSize: BEVEL,
+  bevelSegments: 4,
+  curveSegments: 1
+});
+const aBounds = new THREE.Box3().setFromObject(new THREE.Mesh(aGeo));
+const aCenterY = (aBounds.max.y + aBounds.min.y) / 2;
+aGeo.translate(0, -aCenterY, 0);
+const aWidth = 2 * A_W;
+aGeo.translate(aWidth / 2 + GAP / 2, 0, 0);
+const aMesh = new THREE.Mesh(aGeo, letterMat);
+logoGroup.add(aMesh);
+// Outline A
+const aOutlineGeo = new THREE.ExtrudeGeometry(aShape, {
+  depth: LETTER_DEPTH + 0.12,
+  bevelEnabled: true,
+  bevelThickness: BEVEL + 0.02,
+  bevelSize: BEVEL + 0.02,
+  bevelSegments: 4,
+  curveSegments: 1
+});
+const aOBounds = new THREE.Box3().setFromObject(new THREE.Mesh(aOutlineGeo));
+const aOCenterY = (aOBounds.max.y + aOBounds.min.y) / 2;
+aOutlineGeo.translate(0, -aOCenterY, 0);
+aOutlineGeo.translate(aWidth / 2 + GAP / 2, 0, 0);
+const aOutline = new THREE.Mesh(aOutlineGeo, letterOutlineMat);
+aOutline.position.z = -0.08;
+logoGroup.add(aOutline);
+
+// Back-side mirror copy so the logo reads from the rear too
+const nBack = new THREE.Mesh(nGeo, letterMat);
+nBack.rotation.y = Math.PI;
+nBack.position.z = -LETTER_DEPTH;
+logoGroup.add(nBack);
+const nOutlineBack = new THREE.Mesh(nOutlineGeo, letterOutlineMat);
+nOutlineBack.rotation.y = Math.PI;
+nOutlineBack.position.z = -LETTER_DEPTH + 0.08;
+logoGroup.add(nOutlineBack);
+const aBack = new THREE.Mesh(aGeo, letterMat);
+aBack.rotation.y = Math.PI;
+aBack.position.z = -LETTER_DEPTH;
+logoGroup.add(aBack);
+const aOutlineBack = new THREE.Mesh(aOutlineGeo, letterOutlineMat);
+aOutlineBack.rotation.y = Math.PI;
+aOutlineBack.position.z = -LETTER_DEPTH + 0.08;
+logoGroup.add(aOutlineBack);
+
+console.log('[3D] Custom N+A letters built (Shape-based, no overlap)');
+
+/* Central accent removed — the textured N/A disc is now the focal point */
+
+/* ---------- Orbital rings (chromatic aberration) ---------- */
+const orbitalGroup = new THREE.Group();
+scene.add(orbitalGroup);
+
+const chromaticVS = `
+varying vec2 vUv;
+varying float vAngle;
+void main() {
+  vUv = uv;
+  vAngle = atan2(position.y, position.x);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}`;
+
+const chromaticFS = `
+uniform float uTime;
+uniform float uPhase;
+varying vec2 vUv;
+varying float vAngle;
+
+vec3 hsv2rgb(vec3 c) {
+  vec4 K = vec4(1.0, 2.0/3.0, 1.0/3.0, 3.0);
+  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void main() {
+  // Rainbow around the ring
+  float t = uTime * 0.25 + vAngle * 1.0 + uPhase;
+  float hue = fract(t * 0.15);
+  vec3 color = hsv2rgb(vec3(hue, 0.85, 1.0));
+  // Brightness along ring
+  float bright = 0.7 + 0.3 * sin(vAngle * 3.0 + uTime * 1.2);
+  gl_FragColor = vec4(color * bright, 0.85);
+}`;
+
+function makeOrbital(radius, tube, phase, tilt) {
+  const geo = new THREE.TorusGeometry(radius, tube, 8, 200);
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uPhase: { value: phase }
+    },
+    vertexShader: chromaticVS,
+    fragmentShader: chromaticFS,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.rotation.x = tilt;
+  return mesh;
+}
+
+const orbit1 = makeOrbital(2.5, 0.014, 0, 0.1);
+const orbit2 = makeOrbital(2.75, 0.010, 1.5, -0.2);
+const orbit3 = makeOrbital(2.35, 0.008, 3.0, 0.3);
+orbitalGroup.add(orbit1, orbit2, orbit3);
+
+/* ---------- Particle field ---------- */
+const particleCount = 500;
+const positions = new Float32Array(particleCount * 3);
+const colors = new Float32Array(particleCount * 3);
+const sizes = new Float32Array(particleCount);
+const cIce = new THREE.Color(0x00f0ff);
+const cFire = new THREE.Color(0xffea00);
+const cWhite = new THREE.Color(0xffffff);
+for (let i = 0; i < particleCount; i++) {
+  // Spherical distribution, biased away from center
+  const r = 4.5 + Math.pow(Math.random(), 0.5) * 8;
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos(2 * Math.random() - 1);
+  positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+  positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+  positions[i * 3 + 2] = r * Math.cos(phi) - 2;
+  const c = Math.random();
+  if (c < 0.12) colors[i * 3] = cFire.r, colors[i * 3 + 1] = cFire.g, colors[i * 3 + 2] = cFire.b;
+  else if (c < 0.35) colors[i * 3] = cIce.r, colors[i * 3 + 1] = cIce.g, colors[i * 3 + 2] = cIce.b;
+  else colors[i * 3] = cWhite.r * 0.6, colors[i * 3 + 1] = cWhite.g * 0.6, colors[i * 3 + 2] = cWhite.b * 0.6;
+  sizes[i] = 0.3 + Math.random() * 0.8;
+}
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+pGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+pGeo.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+
+const pVS = `
+attribute float aSize;
+varying vec3 vColor;
+void main() {
+  vColor = color;
+  vec4 mv = modelViewMatrix * vec4(position, 1.0);
+  gl_PointSize = aSize * (45.0 / -mv.z);
+  gl_Position = projectionMatrix * mv;
+}`;
+const pFS = `
+varying vec3 vColor;
+void main() {
+  vec2 c = gl_PointCoord - 0.5;
+  float d = length(c);
+  if (d > 0.5) discard;
+  float a = smoothstep(0.5, 0.0, d);
+  gl_FragColor = vec4(vColor, a * 0.85);
+}`;
+const pMat = new THREE.ShaderMaterial({
+  vertexShader: pVS,
+  fragmentShader: pFS,
+  transparent: true,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending,
+  vertexColors: true
+});
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+/* ---------- Post-processing (Bloom) ---------- */
+const composer = new EffectComposer(renderer);
+composer.setSize(container.clientWidth, container.clientHeight);
+composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(
+  new THREE.Vector2(container.clientWidth, container.clientHeight),
+  0.7,   // strength
+  0.6,   // radius
+  0.25   // threshold
+);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+/* ---------- Mouse parallax ---------- */
+let mouseX = 0, mouseY = 0;
+let targetX = 0, targetY = 0;
+document.addEventListener('mousemove', (e) => {
+  targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+  targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+/* ---------- Resize ---------- */
+function onResize() {
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+  composer.setSize(w, h);
+}
+window.addEventListener('resize', onResize);
+
+/* ---------- Scroll-linked animation ---------- */
+let scrollT = 0;
+let targetScrollT = 0;
+function updateScroll() {
+  const heroH = document.getElementById('hero').offsetHeight;
+  const max = heroH * 0.7;
+  targetScrollT = Math.min(1, window.scrollY / max);
+}
+window.addEventListener('scroll', updateScroll, { passive: true });
+updateScroll();
+
+/* ---------- HUD counter ---------- */
+const hudCounter = document.getElementById('hudCounter');
+let hudCount = 0;
+const hudTarget = 47;
+function updateHUD(now) {
+  const target = Math.floor(hudTarget * (0.5 + 0.5 * Math.sin(now * 0.0005))) + 12;
+  if (hudCount !== target) {
+    hudCount = Math.floor(hudCount + (target - hudCount) * 0.05);
+    hudCounter.textContent = String(hudCount).padStart(2, '0');
+  }
+}
+
+/* ---------- Animation loop ---------- */
+const clock = new THREE.Clock();
+function animate() {
+  const t = clock.getElapsedTime();
+  const dt = clock.getDelta();
+
+  // Smooth scroll
+  scrollT += (targetScrollT - scrollT) * 0.08;
+
+  // Smooth mouse
+  mouseX += (targetX - mouseX) * 0.05;
+  mouseY += (targetY - mouseY) * 0.05;
+
+  // Logo rotation: Y axis continuous, X tilt subtle
+  logoGroup.rotation.y = t * 0.13;
+  logoGroup.rotation.x = Math.sin(t * 0.4) * 0.05;
+
+  // Orbital rings: sync with logo but with phase offset (parallax)
+  orbitalGroup.rotation.y = t * 0.13 - 0.15;
+  orbitalGroup.rotation.x = mouseY * 0.08;
+  orbitalGroup.rotation.z = mouseX * 0.08;
+
+  // Update shader uniforms
+  [orbit1, orbit2, orbit3].forEach(o => {
+    o.material.uniforms.uTime.value = t;
+  });
+
+  // Particle drift
+  particles.rotation.y = t * 0.02 + mouseX * 0.15;
+  particles.rotation.x = mouseY * 0.1;
+  pGeo.attributes.position.array.forEach((_, i) => {
+    if (i % 3 !== 0) return;
+    pGeo.attributes.position.array[i + 1] += Math.sin(t + i) * 0.0005;
+  });
+
+  // Camera parallax (mouse)
+  camera.position.x = mouseX * 0.4;
+  camera.position.y = -mouseY * 0.3;
+  camera.lookAt(0, 0, 0);
+
+  // Scroll-linked: shrink and pull camera back
+  const scale = 1 - scrollT * 0.6;
+  logoGroup.scale.setScalar(scale);
+  orbitalGroup.scale.setScalar(scale);
+  camera.position.z = 5.6 + scrollT * 3.0;
+  // Move logo to upper-right as scroll progresses
+  logoGroup.position.x = scrollT * 1.8;
+  logoGroup.position.y = scrollT * 1.2;
+  orbitalGroup.position.copy(logoGroup.position);
+
+  // HUD
+  updateHUD(performance.now());
+
+  composer.render();
+  requestAnimationFrame(animate);
+}
+animate();
+
+console.log('[3D] Logo scene initialized');
+</script>
+
+</body>
+</html>
