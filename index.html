@@ -1893,6 +1893,74 @@ const plate = new THREE.Mesh(plateGeo, darkMetalMat);
 plate.rotation.x = Math.PI / 2;
 logoGroup.add(plate);
 
+/* N/A accent — canvas texture with the same depth/glow technique as the h1 "БУ"/"СО".
+   Plane size matches the innerRing diameter (2 * 1.62 = 3.24), so the letters sit
+   inscribed in the ring. It is a child of logoGroup, so it inherits the same
+   rotation.y animation as the toruses. Nothing else in the scene is touched. */
+function createNATexture() {
+  const canvas = document.createElement('canvas');
+  const size = 512;
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, size, size);
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Same palette as .hero__h1 .bu / .so
+  const DARK_BRONZE = '#8B6F1F';
+  const GOLD       = '#D4AF37';
+  const LIGHT_GOLD = '#FFE680';
+  // 1) Warm gold glow (matches h1 text-shadow 0 0 12px / 32px rgba(212,175,55,...))
+  ctx.shadowColor = 'rgba(212, 175, 55, 0.55)';
+  ctx.shadowBlur  = 30;
+  ctx.fillStyle = GOLD;
+  ctx.font = '700 280px "Russo One", "Russo One Placeholder", sans-serif';
+  ctx.fillText('N A', size / 2, size / 2);
+  ctx.shadowBlur = 0;
+  // 2) Dark-bronze extrusion (matches h1 0 2px 0 rgba(0,0,0,0.6))
+  ctx.fillStyle = DARK_BRONZE;
+  const off = 4;
+  for (let i = 1; i <= 4; i++) {
+    ctx.fillText('N A', size / 2 + i * off, size / 2 + i * off);
+  }
+  // 3) Light-gold front face
+  ctx.fillStyle = LIGHT_GOLD;
+  ctx.fillText('N A', size / 2, size / 2);
+  // 4) Thin dark-bronze stroke (matches -webkit-text-stroke 1.5px #8B6F1F)
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = DARK_BRONZE;
+  ctx.strokeText('N A', size / 2, size / 2);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
+  return tex;
+}
+let naTexture = createNATexture();
+const naPlaneMat = new THREE.MeshBasicMaterial({
+  map: naTexture,
+  transparent: true,
+  toneMapped: false,
+  side: THREE.DoubleSide,
+  depthWrite: false
+});
+const naPlaneGeo = new THREE.PlaneGeometry(2.6, 2.6); // inscribed in innerRing (radius 1.62 -> diameter 3.24)
+const naPlane = new THREE.Mesh(naPlaneGeo, naPlaneMat);
+naPlane.position.z = 0.2; // in front of plate (±0.035) and inner ring (±0.025)
+logoGroup.add(naPlane);
+
+console.log('[3D] N/A canvas accent added, plane 2.6x2.6 in local units, centred at z=0.2');
+
+// Re-render the texture once Russo One is actually loaded, so the canvas doesn't
+// fall back to system sans-serif on the first paint.
+if (document.fonts && document.fonts.load) {
+  document.fonts.load('700 280px "Russo One"').then(() => {
+    const t = createNATexture();
+    naTexture = t;
+    naPlane.material.map = t;
+    naPlane.material.needsUpdate = true;
+  }).catch(() => { /* keep the first-render texture if the font promise rejects */ });
+}
+
 /* N/A letters — custom Shape-based N and A, with gold outline.
    Each letter is a separate mesh, no overlap, fills inner ring diameter. */
 function makeNShape(w, h) {
