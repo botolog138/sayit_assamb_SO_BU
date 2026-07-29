@@ -942,9 +942,16 @@ body{background:
 .program__step.active .body{color:#f0f2f4}
 .program__note{margin-top:40px;font-size:13px;color:#9a8b5e;letter-spacing:.22em}
 @media (max-width:768px){
-  .program__step{padding:22px 20px;opacity:1}
-  .program__step h3 .day{font-size:24px}
+  .program__pin{display:block;grid-template-columns:1fr;gap:0;min-height:auto}
+  .program__progress{display:none}
+  .program__steps{gap:14px}
+  .program__step{padding:22px 20px;opacity:1;border-radius:16px}
+  .program__step-num{font-size:12px;letter-spacing:.18em;margin-bottom:10px;white-space:nowrap}
+  .program__step h3{margin-bottom:16px}
+  .program__step h3 .day{font-size:26px;line-height:1.08}
   .program__step .body{font-size:17px}
+  .program__step .body li{padding-left:22px;margin-bottom:8px}
+  .program__note{margin-top:28px;letter-spacing:.16em}
 }
 
 /* ---------- ORG CARDS: heavy gold frame, shimmering warm plate ---------- */
@@ -2007,7 +2014,7 @@ function countUp(el, target, duration = 1500, suffix = '') {
 (function(){
   const modal=document.getElementById('orgModal');if(!modal)return;const panel=modal.querySelector('.org-modal__panel'),closeButton=modal.querySelector('.org-modal__close'),avatar=document.getElementById('orgModalAvatar'),role=document.getElementById('orgModalRole'),name=document.getElementById('orgModalName'),bio=document.getElementById('orgModalBio'),tasks=document.getElementById('orgModalTasks'),root=document.getElementById('orgModalContacts');let returnFocus=null;
   const tel=phone=>'tel:+'+phone.replace(/\D/g,'').replace(/^8/,'7');
-  function link(kind,value,label){const a=document.createElement('a'),k=document.createElement('span'),v=document.createElement('span');a.className='org-modal__contact org-modal__contact--'+kind;k.className='org-modal__contact-k';v.className='org-modal__contact-v';k.textContent=label;v.textContent=kind==='tg'?'@'+value:value;a.append(k,v);if(kind==='tg'){a.href='https://t.me/'+value;a.target='_blank';a.rel='noopener';}else a.href=tel(value);return a;}
+  function link(kind,value,label){const a=document.createElement('a'),k=document.createElement('span'),v=document.createElement('span');a.className='org-modal__contact org-modal__contact--'+kind;k.className='org-modal__contact-k';v.className='org-modal__contact-v';k.textContent=label;v.textContent=kind==='tg'?'@'+value:value;a.append(k,v);if(kind==='tg'){a.href='https://t.me/'+value;a.target='_blank';a.rel='noopener';}else{const href=tel(value);a.href=href;a.style.touchAction='manipulation';a.addEventListener('click',event=>{event.stopPropagation();event.preventDefault();window.location.href=href;});}return a;}
   function open(card){returnFocus=card;avatar.textContent=card.querySelector('.org__avatar')?.textContent||'';role.textContent=card.dataset.role||'';name.textContent=card.dataset.name||'';bio.textContent=card.dataset.bio||'';tasks.textContent=card.dataset.tasks?'Задачи: '+card.dataset.tasks:'';root.replaceChildren();let contacts=[];try{contacts=JSON.parse(card.dataset.contacts||'[]')}catch(error){console.error('[contacts] invalid data',error)}contacts.forEach(person=>{const block=document.createElement('div'),personName=document.createElement('div');block.className='org-modal__person';personName.className='org-modal__person-name';personName.textContent=person.name;block.append(personName);if(person.note){const note=document.createElement('div');note.className='org-modal__person-note';note.textContent=person.note;block.append(note)}if(person.phone)block.append(link('phone',person.phone,'Телефон'));if(person.telegram)block.append(link('tg',person.telegram,'Telegram'));root.append(block)});const y=window.scrollY;modal.dataset.scrollY=String(y);
     modal.classList.add('open');modal.setAttribute('aria-hidden','false');
     if(window.lenis&&window.lenis.stop)window.lenis.stop();
