@@ -29,3 +29,6 @@ __pycache__/
 # Large media (intentionally keep na-logo-ref.png as project asset)
 # *.mp4
 # *.mov
+
+# Claude local config
+.claude/
