@@ -245,8 +245,18 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spac
 .btn--ghost { background: transparent; color: var(--fg-0); border: 1px solid var(--line-mid); }
 .btn--ghost:hover { border-color: var(--ice); color: var(--ice); }
 .btn--big { padding: 20px 40px; font-size: 16px; }
-.btn--shine{overflow:hidden;border-color:rgba(212,175,55,.55);animation:btnShineBorder 3.4s ease-in-out infinite}
-.btn--shine::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55) 45%,rgba(212,175,55,.6) 62%,transparent);transform:skewX(-20deg);mix-blend-mode:screen;pointer-events:none;animation:btnShineSweep 3.4s ease-in-out infinite}
+/* ---------- GOLD SHINE: shared shimmer, extracted from "Анонсы" (.btn--shine) ---------- */
+.gold-shine,.gold-shine-ring,.btn--shine,.btn--ghost,.header__cta,.org-modal__contact,.org__card .org__tg,.btn--primary{position:relative;overflow:hidden}
+.gold-shine::after,.btn--shine::after,.btn--ghost::after,.header__cta::after,.org-modal__contact::after,.org__card .org__tg::after,.btn--primary::after{
+  content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(115deg,transparent,rgba(255,255,255,.55) 45%,rgba(212,175,55,.6) 62%,transparent);
+  transform:skewX(-20deg);mix-blend-mode:screen;pointer-events:none;border-radius:inherit;
+  animation:btnShineSweep 3.4s ease-in-out infinite}
+.gold-shine-ring,.btn--shine,.btn--ghost,.header__cta,.org-modal__contact,.org__card .org__tg{
+  border-color:rgba(212,175,55,.55);animation:btnShineBorder 3.4s ease-in-out infinite}
+.btn--primary:focus-visible,.btn--ghost:focus-visible,.header__cta:focus-visible,.org-modal__contact:focus-visible{outline:2px solid rgba(212,175,55,.8);outline-offset:2px}
+.btn--primary:disabled,.btn--ghost:disabled,.header__cta:disabled{animation:none;opacity:.5;cursor:not-allowed}
+.btn--primary:disabled::after,.btn--ghost:disabled::after,.header__cta:disabled::after{content:none}
 @keyframes btnShineBorder{0%,100%{border-color:rgba(212,175,55,.55);box-shadow:0 0 16px rgba(212,175,55,.22)}50%{border-color:rgba(230,228,222,.6);box-shadow:0 0 20px rgba(230,228,222,.26)}}
 @keyframes btnShineSweep{0%{left:-60%}55%{left:130%}100%{left:130%}}
 
@@ -395,9 +405,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spac
 /* ============================================================
    MARQUEE
    ============================================================ */
-.marquee { padding: 28px 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); overflow: hidden; }
-.marquee__track { display: flex; gap: 32px; white-space: nowrap; animation: marquee 32s linear infinite; }
-.marquee__item { font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 48px); font-weight: 500; letter-spacing: -0.01em; color: var(--fg-0); display: inline-flex; align-items: center; gap: 32px; }
+.marquee { padding: 28px 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%); }
+.marquee__track { display: flex; width: max-content; white-space: nowrap; animation: marquee 27.2s linear infinite; }
+.marquee__item { font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 48px); font-weight: 500; letter-spacing: -0.01em; color: var(--fg-0); display: inline-flex; align-items: center; gap: 32px; margin-right: 32px; }
 .marquee__item .dot { color: var(--fire); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
