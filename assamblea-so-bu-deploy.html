@@ -8,6 +8,21 @@
 <title>Ассамблея СО/БУ — проБУди СОзнание · Регион Сибирь · Байкал</title>
 <meta name="description" content="Ассамблея подкомитетов «Больницы и Учреждения» и «Связь с Общественностью». 14–15 ноября 2026, Иркутск, Учебный центр профсоюзов." />
 
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ассамблея СО/БУ" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:url" content="https://na-baykal-irk.ru/" />
+<meta property="og:title" content="Ассамблея СО/БУ — проБУди СОзнание · Регион Сибирь · Байкал" />
+<meta property="og:description" content="Ассамблея подкомитетов «Больницы и Учреждения» и «Связь с Общественностью». 14–15 ноября 2026, Иркутск, Учебный центр профсоюзов." />
+<meta property="og:image" content="https://na-baykal-irk.ru/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Ассамблея СО/БУ — проБУди СОзнание" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ассамблея СО/БУ — проБУди СОзнание · Регион Сибирь · Байкал" />
+<meta name="twitter:description" content="Ассамблея подкомитетов «Больницы и Учреждения» и «Связь с Общественностью». 14–15 ноября 2026, Иркутск, Учебный центр профсоюзов." />
+<meta name="twitter:image" content="https://na-baykal-irk.ru/og-image.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -230,6 +245,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spac
 .btn--ghost { background: transparent; color: var(--fg-0); border: 1px solid var(--line-mid); }
 .btn--ghost:hover { border-color: var(--ice); color: var(--ice); }
 .btn--big { padding: 20px 40px; font-size: 16px; }
+.btn--shine{overflow:hidden;border-color:rgba(212,175,55,.55);animation:btnShineBorder 3.4s ease-in-out infinite}
+.btn--shine::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55) 45%,rgba(212,175,55,.6) 62%,transparent);transform:skewX(-20deg);mix-blend-mode:screen;pointer-events:none;animation:btnShineSweep 3.4s ease-in-out infinite}
+@keyframes btnShineBorder{0%,100%{border-color:rgba(212,175,55,.55);box-shadow:0 0 16px rgba(212,175,55,.22)}50%{border-color:rgba(230,228,222,.6);box-shadow:0 0 20px rgba(230,228,222,.26)}}
+@keyframes btnShineSweep{0%{left:-60%}55%{left:130%}100%{left:130%}}
 
 /* ============================================================
    HERO
@@ -1111,6 +1130,20 @@ body{background:
 .travel__note{margin-top:36px;font-size:17px;color:#ddd9cd}
 @media (max-width:768px){.travel__card{padding:24px 20px;border-radius:18px}}
 
+/* ---------- STAY & MEALS: bigger prices, glowing group labels ---------- */
+.stay__group{margin-bottom:36px}
+.stay__group:last-child{margin-bottom:0}
+.stay__label{
+  font-family:var(--font-mono);font-size:15px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:#f3d268;margin:0 0 18px;text-shadow:0 0 18px rgba(212,175,55,.55),0 0 40px rgba(212,175,55,.25)}
+#stay .travel__price{font-size:clamp(46px,4.4vw,64px);text-shadow:0 2px 0 rgba(0,0,0,.5),0 0 30px rgba(212,175,55,.4)}
+#stay .travel__price .cur{font-size:.55em}
+#stay .travel__note{font-size:19px;margin-top:22px}
+#stay .travel__note strong{font-weight:700;font-size:1.08em;padding:0 2px;color:#ffe89a;text-shadow:0 0 16px rgba(212,175,55,.6),0 0 34px rgba(212,175,55,.3)}
+@media (max-width:768px){#stay .travel__grid{grid-template-columns:1fr !important}}
+#stay .travel__card[data-org]{cursor:pointer}
+#stay .travel__card[data-org]:focus-visible{outline:none;border-color:rgba(212,175,55,.6)}
+
 /* ---------- FINAL CTA: heavier gold ring, tighter stack ---------- */
 .cta-final::after{
   width:min(720px,84vmin);height:min(720px,84vmin);
@@ -1316,6 +1349,7 @@ html{scrollbar-gutter:stable}
     <div class="hero__actions">
       <a href="#program" class="btn btn--primary" data-magnetic>Программа <span>→</span></a>
       <a href="https://2gis.ru/irkutsk/firm/1548640652892514" target="_blank" rel="noopener" class="btn btn--ghost" data-magnetic>Как добраться ↗</a>
+      <a href="https://t.me/proBUdi_SOznanie2026" target="_blank" rel="noopener" class="btn btn--ghost btn--shine" data-magnetic>Анонсы канал ↗</a>
     </div>
   </div>
 
@@ -1437,7 +1471,7 @@ html{scrollbar-gutter:stable}
     <div class="org__grid reveal-stagger" id="orgGrid">
       <button type="button" class="org__card" data-org="kuzma" aria-haspopup="dialog" data-name="Кузьма" data-role="Казначей" data-bio="Отвечает за бюджет ассамблеи и прозрачность расчётов." data-tasks="Бюджет · Отчёты · Яндекс Пэй" data-contacts="[{&quot;name&quot;:&quot;Кузьма&quot;,&quot;phone&quot;:&quot;+7 983 538 0890&quot;,&quot;note&quot;:&quot;Яндекс Пэй&quot;}]"><span class="org__avatar">К</span><span class="org__name">Кузьма</span><span class="org__role">Казначей</span><span class="org__tg">1 контакт</span></button>
       <button type="button" class="org__card" data-org="varya" aria-haspopup="dialog" data-name="Варя" data-role="Секретарь" data-bio="Фиксирует решения, ведёт протоколы и документооборот ассамблеи." data-tasks="Протоколы · Документы · Координация" data-contacts="[{&quot;name&quot;:&quot;Варя&quot;,&quot;phone&quot;:&quot;+7 924 535 3669&quot;}]"><span class="org__avatar">В</span><span class="org__name">Варя</span><span class="org__role">Секретарь</span><span class="org__tg">1 контакт</span></button>
-      <button type="button" class="org__card" data-org="snezhana" aria-haspopup="dialog" data-name="Снежана" data-role="Дизайнер" data-bio="Отвечает за визуальный образ, оформление и материалы ассамблеи." data-tasks="Айдентика · Оформление · Материалы" data-contacts="[{&quot;name&quot;:&quot;Снежана&quot;,&quot;phone&quot;:&quot;+7 914 906 6942&quot;}]"><span class="org__avatar">С</span><span class="org__name">Снежана</span><span class="org__role">Дизайнер</span><span class="org__tg">1 контакт</span></button>
+      <button type="button" class="org__card" data-org="snezhana" aria-haspopup="dialog" data-name="Снежана и Павел" data-role="Дизайнер" data-bio="Отвечает за визуальный образ, оформление и материалы ассамблеи." data-tasks="Айдентика · Оформление · Материалы" data-contacts="[{&quot;name&quot;:&quot;Снежана&quot;,&quot;phone&quot;:&quot;+7 914 906 6942&quot;},{&quot;name&quot;:&quot;Павел&quot;,&quot;phone&quot;:&quot;+7 983 442 0378&quot;}]"><span class="org__avatar">СП</span><span class="org__name">Снежана и Павел</span><span class="org__role">Дизайнер</span><span class="org__tg">2 контакта</span></button>
       <button type="button" class="org__card" data-org="housing" aria-haspopup="dialog" data-name="Аня и Саша" data-role="Координаторы по расселению" data-bio="Помогают с размещением участников и бытовыми вопросами на месте." data-tasks="Бронь · Заселение · Быт" data-contacts="[{&quot;name&quot;:&quot;Аня&quot;,&quot;phone&quot;:&quot;+7 904 111 1336&quot;},{&quot;name&quot;:&quot;Саша&quot;,&quot;phone&quot;:&quot;+7 983 444 1219&quot;}]"><span class="org__avatar">АС</span><span class="org__name">Аня и Саша</span><span class="org__role">Координаторы по расселению</span><span class="org__tg">2 контакта</span></button>
       <button type="button" class="org__card" data-org="food" aria-haspopup="dialog" data-name="Лена" data-role="Координатор по питанию" data-bio="Организует питание участников и контролирует работу с площадкой." data-tasks="Меню · Питание · Площадка" data-contacts="[{&quot;name&quot;:&quot;Лена&quot;,&quot;phone&quot;:&quot;+7 908 666 7628&quot;}]"><span class="org__avatar">Л</span><span class="org__name">Лена</span><span class="org__role">Координатор по питанию</span><span class="org__tg">1 контакт</span></button>
       <button type="button" class="org__card" data-org="fun" aria-haspopup="dialog" data-name="Даня" data-role="Координатор по развлечениям" data-bio="Собирает вечернюю программу и активности для участников." data-tasks="Программа · Активности · Атмосфера" data-contacts="[{&quot;name&quot;:&quot;Даня&quot;,&quot;phone&quot;:&quot;+7 983 403 3399&quot;}]"><span class="org__avatar">Д</span><span class="org__name">Даня</span><span class="org__role">Координатор по развлечениям</span><span class="org__tg">1 контакт</span></button>
@@ -1465,16 +1499,20 @@ html{scrollbar-gutter:stable}
       </div>
       <div class="venue__facts">
         <div class="venue__fact" data-reveal>
-          <div class="k">ЗАЛ БОЛЬШОЙ</div>
+          <div class="k">БОЛЬШОЙ ЗАЛ</div>
           <div class="v">160 мест</div>
         </div>
         <div class="venue__fact" data-reveal>
-          <div class="k">ЗАЛ МАЛЫЙ</div>
-          <div class="v">40 мест</div>
+          <div class="k">МАЛЫЙ ЗАЛ · БУ</div>
+          <div class="v">около 40 мест</div>
+        </div>
+        <div class="venue__fact" data-reveal>
+          <div class="k">МАЛЫЙ ЗАЛ · СО</div>
+          <div class="v">около 40 мест</div>
         </div>
         <div class="venue__fact" data-reveal>
           <div class="k">ПРОЖИВАНИЕ</div>
-          <div class="v">от 1 700 ₽ / сутки</div>
+          <div class="v">от 1 500 ₽ / сутки</div>
         </div>
         <div class="venue__fact" data-reveal>
           <div class="k">ПИТАНИЕ</div>
@@ -1497,12 +1535,38 @@ html{scrollbar-gutter:stable}
 </section>
 
 <!-- ============================================================
+     STAY & MEALS
+     ============================================================ -->
+<section class="section" id="stay">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="num">05 — ПРОЖИВАНИЕ И ПИТАНИЕ</span>
+      <div class="rule"></div>
+    </div>
+    <div class="stay__group" data-reveal>
+      <h3 class="stay__label">Проживание</h3>
+      <div class="travel__grid reveal-stagger" style="grid-template-columns:repeat(2,1fr)">
+        <div class="travel__card" data-org="housing" tabindex="0" role="button" aria-haspopup="dialog" data-name="Аня и Саша" data-role="Координаторы по расселению" data-bio="Помогают с размещением участников и бытовыми вопросами на месте." data-tasks="Бронь · Заселение · Быт" data-contacts="[{&quot;name&quot;:&quot;Аня&quot;,&quot;phone&quot;:&quot;+7 904 111 1336&quot;},{&quot;name&quot;:&quot;Саша&quot;,&quot;phone&quot;:&quot;+7 983 444 1219&quot;}]"><span class="org__avatar" style="display:none">АС</span><div class="travel__city">Стоимость проживания в двух либо трёх местном номере.</div><div class="travel__price"><span data-count="1500">0</span><span class="cur">₽</span></div><div class="travel__sub">Проживания цена за сутки</div></div>
+        <div class="travel__card" data-org="housing" tabindex="0" role="button" aria-haspopup="dialog" data-name="Аня и Саша" data-role="Координаторы по расселению" data-bio="Помогают с размещением участников и бытовыми вопросами на месте." data-tasks="Бронь · Заселение · Быт" data-contacts="[{&quot;name&quot;:&quot;Аня&quot;,&quot;phone&quot;:&quot;+7 904 111 1336&quot;},{&quot;name&quot;:&quot;Саша&quot;,&quot;phone&quot;:&quot;+7 983 444 1219&quot;}]"><span class="org__avatar" style="display:none">АС</span><div class="travel__city">Отдельное проживание</div><div class="travel__price"><span data-count="2700">0</span><span class="cur">₽</span></div><div class="travel__sub">Проживания цена за сутки</div></div>
+      </div>
+    </div>
+    <div class="stay__group" data-reveal>
+      <h3 class="stay__label">Питание</h3>
+      <div class="travel__grid reveal-stagger" style="grid-template-columns:repeat(2,1fr)">
+        <div class="travel__card" data-org="food" tabindex="0" role="button" aria-haspopup="dialog" data-name="Лена" data-role="Координатор по питанию" data-bio="Организует питание участников и контролирует работу с площадкой." data-tasks="Меню · Питание · Площадка" data-contacts="[{&quot;name&quot;:&quot;Лена&quot;,&quot;phone&quot;:&quot;+7 908 666 7628&quot;}]"><span class="org__avatar" style="display:none">Л</span><div class="travel__city">Питание</div><div class="travel__price"><span data-count="3650">0</span><span class="cur">₽</span></div><div class="travel__sub">5 приёмов пищи</div></div>
+      </div>
+      <p class="travel__note" data-reveal>В стоимость питания входит 5 приёмов пищи: <strong>14.11.2026</strong> — завтрак, обед, ужин; <strong>15.11.2026</strong> — завтрак, обед. Оплата за питание принимается до <strong>31.10.2026</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      TRAVEL
      ============================================================ -->
 <section class="section" id="travel">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="num">05 — ПРОЕЗД</span>
+      <span class="num">06 — ПРОЕЗД</span>
       <div class="rule"></div>
     </div>
     <div class="travel__grid reveal-stagger" id="travelGrid">
@@ -1525,7 +1589,7 @@ html{scrollbar-gutter:stable}
 <section class="section" id="faq">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="num">06 — ВОПРОСЫ</span>
+      <span class="num">07 — ВОПРОСЫ</span>
       <div class="rule"></div>
     </div>
     <div class="faq__list">
@@ -2027,7 +2091,7 @@ function countUp(el, target, duration = 1500, suffix = '') {
     const y=Number(modal.dataset.scrollY||0);
     returnFocus?.focus({preventScroll:true});
     if(!Number.isNaN(y))window.scrollTo(0,y);}
-  document.querySelectorAll('.org__card').forEach(card=>card.addEventListener('click',()=>open(card)));modal.querySelectorAll('[data-modal-close]').forEach(el=>el.addEventListener('click',close));document.addEventListener('keydown',event=>{if(!modal.classList.contains('open'))return;if(event.key==='Escape'){event.preventDefault();close();return}if(event.key!=='Tab')return;const focusable=[...panel.querySelectorAll('button,a[href]')].filter(el=>!el.hidden);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}});
+  document.querySelectorAll('.org__card, #stay .travel__card[data-org]').forEach(card=>{card.addEventListener('click',()=>open(card));if(card.tagName!=='BUTTON')card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();open(card)}})});modal.querySelectorAll('[data-modal-close]').forEach(el=>el.addEventListener('click',close));document.addEventListener('keydown',event=>{if(!modal.classList.contains('open'))return;if(event.key==='Escape'){event.preventDefault();close();return}if(event.key!=='Tab')return;const focusable=[...panel.querySelectorAll('button,a[href]')].filter(el=>!el.hidden);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}});
 })();
 
 /* ============================================================
