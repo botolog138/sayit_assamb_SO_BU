@@ -899,11 +899,14 @@ body{background:
   .cta-final{padding:88px 0}
   .footer__outline{bottom:-16px}
 }
+@media (max-width:769px){
+  .hero__actions{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .hero__actions .btn{width:100%;justify-content:center}
+}
 @media (max-width:420px){
   .header__title .loc{font-size:11px}
   .hero__readouts{gap:22px 30px}
-  .hero__actions{width:100%}
-  .hero__actions .btn{width:100%;justify-content:center}
+  .hero__actions{grid-template-columns:1fr}
 }
 
 .header__logo{width:30px;height:30px;background:var(--na-logo) center/contain no-repeat;flex:0 0 auto;filter:drop-shadow(0 0 10px rgba(212,175,55,.55))}
@@ -1360,6 +1363,7 @@ html{scrollbar-gutter:stable}
       <a href="#program" class="btn btn--primary" data-magnetic>Программа <span>→</span></a>
       <a href="https://2gis.ru/irkutsk/firm/1548640652892514" target="_blank" rel="noopener" class="btn btn--ghost" data-magnetic>Как добраться ↗</a>
       <a href="https://t.me/proBUdi_SOznanie2026" target="_blank" rel="noopener" class="btn btn--ghost btn--shine" data-magnetic>Анонсы канал ↗</a>
+      <a href="https://teletype.in/@na_baikal_siberia/CWNVwEgv_B1" target="_blank" rel="noopener" class="btn btn--ghost btn--shine" data-magnetic>Полезные ссылки ↗</a>
     </div>
   </div>
 
